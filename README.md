@@ -146,9 +146,9 @@ The installer prompts for a target directory, copies all template files (excludi
 
 | Rule | Where | What It Does |
 |------|-------|-------------|
-| No echoing tool output | `RULES_STRICT.md`, `enforce.md`, workflow step 7 | Never repeat what a tool already displayed |
+| No echoing tool output | `RULES_STRICT.md`, `enforce.md` | Never repeat what a tool already displayed |
 | Serena tools mandatory | `AGENTS.md` | Use serena equivalents for all code operations |
 | Batch reads | `AGENTS.md` | Read multiple files in one call, not one at a time |
 | Commit & push with pre-approval | `RULES_STRICT.md` | Stage first, ask, then commit + push on approval |
-| Dependency auto-install | workflow step 3 | Install `uvx` if missing; prompt for `CONTEXT7_API_KEY` |
+| Dependency auto-install | `mandatory-workflow` skill | Install `uvx` if missing; prompt for `CONTEXT7_API_KEY` |
 | Permission scoping | `enforce.md` | `bash` set to `ask` — shell commands require approval |
