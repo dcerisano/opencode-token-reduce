@@ -52,7 +52,7 @@ This reduces context transmitted per tool call and avoids loading irrelevant cod
 ## Quick Start
 
 ```bash
-git clone <repo-url> opencode-token-reduce
+git clone https://github.com/dcerisano/opencode-token-reduce.git
 cd opencode-token-reduce
 opencode
 ```
