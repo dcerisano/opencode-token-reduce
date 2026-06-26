@@ -13,9 +13,14 @@ description: Session startup procedure. Load this skill immediately after activa
    - If the user agrees, run `install.sh` with bash. It is interactive — the user will respond to prompts directly.
    - If the user declines, check dependencies manually: ensure `uvx` is on PATH (auto-install if missing) and `CONTEXT7_API_KEY` is set (ask the user to provide one if not, do not proceed until confirmed).
 4. **Context7 setup** — Verify `CONTEXT7_API_KEY` is set (already checked in step 3). If missing, prompt the user to set it; do not proceed until confirmed. Context7 is the **mandatory documentation source** for this project, replacing `webfetch` as the primary lookup tool.
-5. **Use serena tools for all code operations** — native tools are fallback only. See AGENTS.md for the full tool mapping.
-6. **Context7 is mandatory for all documentation lookups.** Before using `webfetch` for any library, framework, API, SDK, tool, or service, use Context7 first (`resolve-library-id` → `query-docs`). If Context7 fails or has no relevant results, only then fall back to `webfetch`.
-7. Read README.md via `serena_read_file` (once per session).
-8. **Compliance check** — Never repeat, paraphrase, or summarize tool output. Let results speak for themselves. Say nothing when there is nothing to add.
+5. **Git remote setup** — Check if a git remote (`origin`) exists. If not, prompt the user to create a GitHub remote:
+   - Check if `gh` (GitHub CLI) is installed. If missing, guide install via `gh` docs or system package manager.
+   - If `gh` is installed but not authenticated, run `gh auth login` interactively.
+   - Once authenticated, prompt for a repository name (`owner/repo`) and visibility (`public`/`private`), then run `gh repo create <name> --<visibility> --push --source=.`
+   - If `gh` unavailable or user declines, fall back to manual instructions: `git remote add origin <url>` then `git push -u origin main`.
+6. **Use serena tools for all code operations** — native tools are fallback only. See AGENTS.md for the full tool mapping.
+7. **Context7 is mandatory for all documentation lookups.** Before using `webfetch` for any library, framework, API, SDK, tool, or service, use Context7 first (`resolve-library-id` → `query-docs`). If Context7 fails or has no relevant results, only then fall back to `webfetch`.
+8. Read README.md via `serena_read_file` (once per session).
+9. **Compliance check** — Never repeat, paraphrase, or summarize tool output. Let results speak for themselves. Say nothing when there is nothing to add.
 
-Steps 5-8 may be skipped for non-coding questions.
+Steps 6-9 may be skipped for non-coding questions.

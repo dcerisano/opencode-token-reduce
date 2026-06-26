@@ -57,7 +57,15 @@ cd opencode-token-reduce
 opencode
 ```
 
-That is it. The `enforce` agent loads automatically, runs the mandatory workflow (dependency check, Serena setup, Context7 setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
+To bootstrap a **new project** from this template into a separate directory:
+
+```bash
+./install.sh
+```
+
+The installer copies the template files, initialises a git repo, and optionally creates a GitHub remote.
+
+That is it. The `enforce` agent loads automatically, runs the mandatory workflow (dependency check, Serena setup, Context7 setup, git remote setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
 
 ### Startup sequence (automatic)
 
@@ -66,9 +74,10 @@ That is it. The `enforce` agent loads automatically, runs the mandatory workflow
 3. Check required dependencies:
    - If `uvx` is missing, install it via the Astral uv installer
    - If `CONTEXT7_API_KEY` is unset, ask you to provide one
-4. Load the mandatory-workflow skill and follow its procedure — this enforces **Context7 as the mandatory documentation source** (`resolve-library-id` → `query-docs`) before any `webfetch` fallback
-5. Read this README to prime session context
-6. Run compliance checklist (no-echo rule enforcement)
+4. **Git remote setup** — If no git remote is configured, prompt to create a GitHub repository and set it as the remote. If `gh` (GitHub CLI) is not installed or authenticated, guide the user through install and `gh auth login`. Falls back to manual instructions (`git remote add origin <url>`).
+5. Load the mandatory-workflow skill and follow its procedure — this enforces **Context7 as the mandatory documentation source** (`resolve-library-id` → `query-docs`) before any `webfetch` fallback
+6. Read this README to prime session context
+7. Run compliance checklist (no-echo rule enforcement)
 
 ---
 
@@ -99,29 +108,3 @@ opencode-token-reduce/
 │   └── memories/              # Persistent agent memories
 └── .gitignore
 ```
-
----
-
-## Customizing for Your Project
-
-Drop this repo's files into an existing project to add token-reducing behavior:
-
-```bash
-cp -r opencode-token-reduce/.opencode opencode-token-reduce/opencode.json \
-      opencode-token-reduce/AGENTS.md opencode-token-reduce/RULES_STRICT.md \
-      your-project/
-cd your-project
-opencode
-```
-
-Or edit `opencode.json` to point `instructions` at your own rules files.
-
-To bootstrap a completely new project from this template, run the installer:
-
-```bash
-./install.sh
-```
-
-The installer prompts for a target directory, copies all template files (excluding `.git` and `.serena/cache/`), initialises a git repo, and optionally creates a GitHub remote via `gh`.
-
-
