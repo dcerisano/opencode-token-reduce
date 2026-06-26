@@ -135,11 +135,13 @@ select REPLY in "Yes" "No"; do
       if command -v rsync &>/dev/null; then
         rsync -a --exclude='.git/' \
                  --exclude='.serena/cache/' \
+                 --exclude='.opencode/node_modules/' \
                  "$SCRIPT_DIR"/ "$TARGET_DIR"/
       else
         cd "$SCRIPT_DIR"
         tar cf - --exclude='.git' \
                  --exclude='.serena/cache' \
+                 --exclude='.opencode/node_modules' \
                  . | (cd "$TARGET_DIR" && tar xf -)
         cd "$SCRIPT_DIR"
       fi
@@ -152,6 +154,13 @@ select REPLY in "Yes" "No"; do
         if ! git config user.email &>/dev/null; then
           git config user.email "user@opencode-token-reduce"
           git config user.name "opencode-token-reduce"
+          echo ""
+          echo "  WARNING: No global git identity (user.name / user.email) is configured."
+          echo "  Placeholder values were used for this commit. To push to a remote,"
+          echo "  set your real identity:"
+          echo "    git config --global user.name  \"Your Name\""
+          echo "    git config --global user.email \"your.email@example.com\""
+          echo ""
         fi
         git add -A
         git commit -m "Initial commit: opencode-token-reduce template"

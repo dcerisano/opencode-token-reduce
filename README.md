@@ -87,7 +87,7 @@ opencode-token-reduce/
 ├── opencode.json              # Main config: model, MCP servers, skills, commands
 ├── AGENTS.md                  # Agent rules: efficiency, tone, tool discipline
 ├── RULES_STRICT.md            # Hard behavioral rules (no-echo, commit & push)
-├── init-new-opencode-project.sh  # Bootstrap script for new projects
+├── install.sh                    # Interactive installer — dependencies, project bootstrap, GitHub remote
 ├── .opencode/
 │   ├── agent/
 │   │   └── enforce.md         # Default agent: mandatory workflow entry point
@@ -118,13 +118,13 @@ opencode
 
 Or edit `opencode.json` to point `instructions` at your own rules files.
 
-To bootstrap a completely new project from this template:
+To bootstrap a completely new project from this template, run the installer:
 
 ```bash
-./init-new-opencode-project.sh
+./install.sh
 ```
 
-The script prompts for a target directory, copies all template files (excluding `.git` and `.serena/cache/`), initialises a git repo, and optionally creates a GitHub remote via `gh`.
+The installer prompts for a target directory, copies all template files (excluding `.git` and `.serena/cache/`), initialises a git repo, and optionally creates a GitHub remote via `gh`.
 
 ---
 
