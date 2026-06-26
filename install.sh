@@ -136,16 +136,42 @@ select REPLY in "Yes" "No"; do
         rsync -a --exclude='.git/' \
                  --exclude='.serena/cache/' \
                  --exclude='.opencode/node_modules/' \
+                 --exclude='install.sh' \
+                 --exclude='.opencode/skills/installer-setup/' \
                  "$SCRIPT_DIR"/ "$TARGET_DIR"/
       else
         cd "$SCRIPT_DIR"
         tar cf - --exclude='.git' \
                  --exclude='.serena/cache' \
                  --exclude='.opencode/node_modules' \
+                 --exclude='install.sh' \
+                 --exclude='.opencode/skills/installer-setup' \
                  . | (cd "$TARGET_DIR" && tar xf -)
         cd "$SCRIPT_DIR"
       fi
       echo "Template files copied."
+
+      # Strip installer references from the target README
+      if [ -f "$TARGET_DIR/README.md" ]; then
+        # Remove the "To bootstrap..." paragraph, install.sh code block,
+        # and clone instructions. Replace with simplified Quick Start.
+        sed -i '/^## Quick Start$/,/^### Startup sequence/{
+          /^## Quick Start$/!{
+            /^### Startup sequence/!d
+          }
+        }' "$TARGET_DIR/README.md"
+        # Insert simplified Quick Start content after the heading
+        sed -i '/^## Quick Start$/a\
+\
+```bash\
+opencode\
+```\
+\
+The `enforce` agent loads automatically, runs the mandatory workflow (dependency check, Serena setup, Context7 setup, git remote setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.\
+' "$TARGET_DIR/README.md"
+        # Remove install.sh line from the File Layout section
+        sed -i '/├── install.sh/d' "$TARGET_DIR/README.md"
+      fi
 
       # Git init
       cd "$TARGET_DIR"
