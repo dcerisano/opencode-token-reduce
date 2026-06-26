@@ -7,7 +7,7 @@ permission:
   glob: allow
   grep: allow
   bash: ask
-  webfetch: allow
+  webfetch: ask
   websearch: allow
   skill: allow
   todowrite: allow
