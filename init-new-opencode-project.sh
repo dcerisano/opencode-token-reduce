@@ -58,6 +58,13 @@ if [[ -d .git ]]; then
   echo "Git repository already initialized."
 else
   git init
+
+  # Ensure git has user identity for the commit
+  if ! git config user.email &>/dev/null; then
+    git config user.email "user@opencode-token-reduce"
+    git config user.name "opencode-token-reduce"
+  fi
+
   git add -A
   git commit -m "Initial commit: opencode-token-reduce template"
   echo "Git repository initialized and first commit made."
