@@ -1,4 +1,25 @@
 #!/usr/bin/env bash
+# init-new-opencode-project.sh
+#
+# Bootstrap a new project from the opencode-token-reduce template.
+#
+# Usage:
+#   ./init-new-opencode-project.sh
+#
+# What it does:
+#   1. Prompts for a target directory (relative paths resolve to $HOME)
+#   2. Copies this template into it (excludes .git/ and .serena/cache/)
+#   3. Initialises a git repo with an initial commit
+#   4. Optionally creates a GitHub remote via `gh` and pushes
+#
+# Prerequisites:
+#   - git
+#   - curl (for uv install if needed; otherwise already have uv/uvx)
+#   - gh (optional, only needed for GitHub remote creation)
+#
+# The resulting project is ready to open with `opencode`.
+# There is no need to run this script from within the target directory.
+# It can be run from anywhere — it discovers its own location automatically.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
