@@ -16,4 +16,6 @@ description: Session startup procedure. Load this skill immediately after activa
 5. Load the `context7-mcp` skill when library/syntax questions arise. Scope to unfamiliar or fast-moving technologies only (skip stable stdlib APIs like Python/Java builtins).
 6. Read README.md via `serena_read_file` (once per session).
 
-Steps 4-6 may be skipped for non-coding questions.
+7. **Compliance check** — Never repeat, paraphrase, or summarize tool output. Let results speak for themselves. Say nothing when there is nothing to add.
+
+Steps 4-7 may be skipped for non-coding questions.
