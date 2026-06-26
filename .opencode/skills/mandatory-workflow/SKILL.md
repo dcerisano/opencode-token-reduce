@@ -9,8 +9,11 @@ description: Session startup procedure. Load this skill immediately after activa
 
 1. `serena_initial_instructions` — read Serena manual (call once per session)
 2. `serena_activate_project` — activate current project
-3. **Use serena tools for all code operations** — native tools are fallback only. See AGENTS.md for the full tool mapping.
-4. Load the `context7-mcp` skill when library/syntax questions arise. Scope to unfamiliar or fast-moving technologies only (skip stable stdlib APIs like Python/Java builtins).
-5. Read README.md via `serena_read_file` (once per session).
+3. **Ensure required dependencies are available.**
+   - If `uvx` is not on `PATH`, install it automatically: run `curl -LsSf https://astral.sh/uv/install.sh | sh` (works on Linux/macOS). If that fails, fall back to `brew install uv` on macOS or `pip install --user uv` on Linux.
+   - If `CONTEXT7_API_KEY` is unset, ask the user to provide one (register at context7.com for a free key) and set it in the environment. Do not proceed until the user confirms it is set.
+4. **Use serena tools for all code operations** — native tools are fallback only. See AGENTS.md for the full tool mapping.
+5. Load the `context7-mcp` skill when library/syntax questions arise. Scope to unfamiliar or fast-moving technologies only (skip stable stdlib APIs like Python/Java builtins).
+6. Read README.md via `serena_read_file` (once per session).
 
-Steps 3-5 may be skipped for non-coding questions.
+Steps 4-6 may be skipped for non-coding questions.

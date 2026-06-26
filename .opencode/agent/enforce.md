@@ -6,7 +6,7 @@ permission:
   edit: allow
   glob: allow
   grep: allow
-  bash: allow
+  bash: ask
   webfetch: allow
   websearch: allow
   skill: allow
