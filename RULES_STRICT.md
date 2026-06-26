@@ -11,5 +11,7 @@ Violation checklist (every response):
 - Did a tool display file content? → Do not summarize it.
 - Is there nothing to add beyond the tool output? → Say nothing.
 
-## Push rule
-- Always ask the user for confirmation before pushing to remote. Never push without explicit approval.
+## Commit & push rule
+- Stage all intended files, then ask the user for approval: "commit & push?"
+- Do not commit before asking.
+- If approved, commit then push in sequence.
