@@ -7,9 +7,9 @@
 #   ./install.sh
 #
 # This script:
-#   1. Checks for and installs missing dependencies (uvx)
+#   1. Installs all missing dependencies (git, curl, uvx)
 #   2. Checks CONTEXT7_API_KEY is set
-#   3. Optionally creates a new OpenCode project from this template
+#   3. Prompts to create a new OpenCode project from this template
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -19,35 +19,71 @@ echo " opencode-token-reduce installer"
 echo "===================================="
 echo ""
 
+# ---- Detect package manager ----
+install_sys_pkg() {
+  local pkg="$1"
+  if command -v apt-get &>/dev/null; then
+    sudo apt-get install -y "$pkg"
+  elif command -v dnf &>/dev/null; then
+    sudo dnf install -y "$pkg"
+  elif command -v yum &>/dev/null; then
+    sudo yum install -y "$pkg"
+  elif command -v zypper &>/dev/null; then
+    sudo zypper install -y "$pkg"
+  elif command -v apk &>/dev/null; then
+    sudo apk add "$pkg"
+  elif command -v pacman &>/dev/null; then
+    sudo pacman -S --noconfirm "$pkg"
+  elif command -v brew &>/dev/null; then
+    brew install "$pkg"
+  else
+    echo "  ERROR: No supported package manager found." >&2
+    echo "  Install $pkg manually, then re-run." >&2
+    return 1
+  fi
+}
+
 # ---- Dependencies ----
 echo "--- Checking dependencies ---"
 
-DEP_MISSING=0
-
-if command -v uvx &>/dev/null; then
-  echo "  uvx:         found ($(uvx --version 2>/dev/null || echo "present"))"
+if command -v curl &>/dev/null; then
+  echo "  curl:        found ($(curl --version 2>/dev/null | head -1))"
 else
-  echo "  uvx:         NOT FOUND — installing..."
+  echo "  curl:        NOT FOUND — installing..."
+  install_sys_pkg curl
   if command -v curl &>/dev/null; then
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    export PATH="$HOME/.local/bin:$PATH"
-    if command -v uvx &>/dev/null; then
-      echo "  uvx:         installed successfully"
-    else
-      echo "  ERROR: uvx installation failed. Try: pip install uv" >&2
-      DEP_MISSING=1
-    fi
+    echo "  curl:        installed successfully"
   else
-    echo "  ERROR: curl not found. Install curl or manually install uv from https://docs.astral.sh/uv/" >&2
-    DEP_MISSING=1
+    echo "  ERROR: Failed to install curl." >&2
+    exit 1
   fi
 fi
 
 if command -v git &>/dev/null; then
   echo "  git:         found ($(git --version 2>/dev/null))"
 else
-  echo "  ERROR: git not found. Install git and re-run." >&2
-  DEP_MISSING=1
+  echo "  git:         NOT FOUND — installing..."
+  install_sys_pkg git
+  if command -v git &>/dev/null; then
+    echo "  git:         installed successfully"
+  else
+    echo "  ERROR: Failed to install git." >&2
+    exit 1
+  fi
+fi
+
+if command -v uvx &>/dev/null; then
+  echo "  uvx:         found ($(uvx --version 2>/dev/null || echo "present"))"
+else
+  echo "  uvx:         NOT FOUND — installing..."
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  export PATH="$HOME/.local/bin:$PATH"
+  if command -v uvx &>/dev/null; then
+    echo "  uvx:         installed successfully"
+  else
+    echo "  ERROR: uvx installation failed." >&2
+    exit 1
+  fi
 fi
 
 if [ -n "${CONTEXT7_API_KEY:-}" ]; then
@@ -64,13 +100,7 @@ fi
 
 echo ""
 
-if [ "$DEP_MISSING" -ne 0 ]; then
-  echo "Some dependencies could not be installed automatically." >&2
-  echo "Fix the issues above and re-run." >&2
-  exit 1
-fi
-
-# ---- Option: create a new project ----
+# ---- Prompt: create a new project ----
 echo "--- Create a new OpenCode project? ---"
 echo "Set up a new directory with this template, a git repo,"
 echo "and optionally a GitHub remote."
