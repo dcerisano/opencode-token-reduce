@@ -63,16 +63,15 @@ To bootstrap a **new project** from this template into a separate directory, run
 ./install.sh
 ```
 
-The `enforce` agent loads automatically, runs the mandatory workflow (Context7 setup, git remote setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
+The `enforce` agent loads automatically, runs the mandatory workflow (Context7 setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
 
 ### Startup sequence (automatic)
 
 1. Read Serena instructions manual
 2. Activate the project in Serena
 3. **Context7 setup** — Verify `CONTEXT7_API_KEY` is set. If missing, ask you to provide one.
-4. **Git remote setup** — If no git remote is configured, prompt to create a GitHub repository and set it as the remote. If `gh` (GitHub CLI) is not installed or authenticated, guide through install and `gh auth login`. Falls back to manual instructions (`git remote add origin <url>`).
-5. Read this README to prime session context
-6. Run compliance checklist (no-echo rule enforcement)
+4. Read this README to prime session context
+5. Run compliance checklist (no-echo rule enforcement)
 
 ---
 
@@ -97,7 +96,7 @@ opencode-token-reduce/
 │   │   └── enforce.md         # Default agent: mandatory workflow entry point
 │   └── skills/
 │       ├── context7-mcp/      # Context7 via MCP tools (resolve-library-id, query-docs)
-│       └── mandatory-workflow/ # Session startup: Context7 setup, git remote setup, README priming, compliance
+│       └── mandatory-workflow/ # Session startup: Context7 setup, README priming, compliance
 ├── .serena/
 │   ├── project.yml            # Serena project configuration
 │   └── memories/              # Persistent agent memories
