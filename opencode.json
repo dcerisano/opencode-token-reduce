@@ -1,0 +1,59 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "enforce",
+  "instructions": ["AGENTS.md"],
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "model": "opencode/deepseek-v4-flash-free",
+  "provider": {
+    "opencode": {
+      "models": {
+        "deepseek-v4-flash-free": {
+          "options": {
+            "temperature": 0,
+            "top_p": 1,
+            "thinking": { "type": "enabled" },
+            "reasoning_effort": "low"
+          }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "serena": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ],
+      "enabled": true
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      },
+      "enabled": true
+    }
+  },
+  "lsp": true,
+  "command": {
+    "test": {
+      "template": "Run project tests and report pass/fail counts per tier. If any test fails, analyze the failure and fix it.",
+      "description": "Run all tests"
+    },
+    "fix": {
+      "template": "Run the build/tests, identify any failures, fix them, then re-run until green. If a fix requires more than 3 attempts on the same error, stop and summarize the problem.",
+      "description": "Build, fix failures, repeat until green"
+    },
+    "status": {
+      "template": "Show git branch, uncommitted changes, and recent commits.",
+      "description": "Show project status"
+    }
+  }
+}
