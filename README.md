@@ -57,7 +57,7 @@ cd opencode-token-reduce
 opencode
 ```
 
-That is it. The `enforce` agent loads automatically, runs the mandatory workflow (dependency check, Serena setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
+That is it. The `enforce` agent loads automatically, runs the mandatory workflow (dependency check, Serena setup, Context7 setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
 
 ### Startup sequence (automatic)
 
@@ -66,7 +66,7 @@ That is it. The `enforce` agent loads automatically, runs the mandatory workflow
 3. Check required dependencies:
    - If `uvx` is missing, install it via the Astral uv installer
    - If `CONTEXT7_API_KEY` is unset, ask you to provide one
-4. Load the mandatory-workflow skill and follow its procedure
+4. Load the mandatory-workflow skill and follow its procedure — this enforces **Context7 as the mandatory documentation source** (`resolve-library-id` → `query-docs`) before any `webfetch` fallback
 5. Read this README to prime session context
 6. Run compliance checklist (no-echo rule enforcement)
 
@@ -93,11 +93,9 @@ opencode-token-reduce/
 │   │   └── enforce.md         # Default agent: mandatory workflow entry point
 │   └── skills/
 │       ├── context7-mcp/      # Context7 via MCP tools (resolve-library-id, query-docs)
-│       ├── find-docs/         # Context7 via CLI (ctx7 library/docs commands)
 │       └── mandatory-workflow/ # Session startup: dependency check, Serena setup, README priming, compliance
 ├── .serena/
 │   ├── project.yml            # Serena project configuration
-│   ├── project.local.yml      # Local serena overrides (tracked, safe to edit)
 │   └── memories/              # Persistent agent memories
 └── .gitignore
 ```
@@ -126,29 +124,4 @@ To bootstrap a completely new project from this template, run the installer:
 
 The installer prompts for a target directory, copies all template files (excluding `.git` and `.serena/cache/`), initialises a git repo, and optionally creates a GitHub remote via `gh`.
 
----
 
-## How Token Reduction Works
-
-1. **`RULES_STRICT.md`** and **`AGENTS.md`** are injected into every prompt — they command no repeated tool output, no echo of results, no first-person chatter, batch reads, and push confirmation via pre-approval.
-
-2. **Serena** replaces native read/write/grep/glob with semantic operations (symbol search, declaration lookup, diagnostics) that transmit less context per call.
-
-3. **Context7** replaces stale training-data answers with live documentation — one focused query instead of generating speculative examples.
-
-4. **Low reasoning effort** and **temperature 0** eliminate wasteful chain-of-thought branching.
-
-5. **Skills** are loaded on demand via the `skill` tool, not baked into every prompt.
-
----
-
-## Key Rules Enforced
-
-| Rule | Where | What It Does |
-|------|-------|-------------|
-| No echoing tool output | `RULES_STRICT.md`, `enforce.md` | Never repeat what a tool already displayed |
-| Serena tools mandatory | `AGENTS.md` | Use serena equivalents for all code operations |
-| Batch reads | `AGENTS.md` | Read multiple files in one call, not one at a time |
-| Commit & push with pre-approval | `RULES_STRICT.md` | Stage first, ask, then commit + push on approval |
-| Dependency auto-install | `mandatory-workflow` skill | Install `uvx` if missing; prompt for `CONTEXT7_API_KEY` |
-| Permission scoping | `enforce.md` | `bash` set to `ask` — shell commands require approval |
