@@ -10,3 +10,6 @@ Violation checklist (every response):
 - Did a tool say "Done" or "Success"? → Do not echo it.
 - Did a tool display file content? → Do not summarize it.
 - Is there nothing to add beyond the tool output? → Say nothing.
+
+## Push rule
+- Always ask the user for confirmation before pushing to remote. Never push without explicit approval.
