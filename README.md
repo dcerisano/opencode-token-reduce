@@ -4,6 +4,30 @@ A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI
 
 Clone it, open it with OpenCode, and every session starts with a pre-configured token-reducing environment.
 
+## Quick Start
+
+```bash
+git clone https://github.com/dcerisano/opencode-token-reduce.git
+cd opencode-token-reduce
+opencode
+```
+
+To bootstrap a **new project** from this template into a separate directory, run the installer manually:
+
+```bash
+./install.sh
+```
+
+The `enforce` agent loads automatically, runs the mandatory workflow (Context7 setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
+
+### Startup sequence (automatic)
+
+1. Read Serena instructions manual
+2. Activate the project in Serena
+3. **Context7 setup** — Verify `CONTEXT7_API_KEY` is set. If missing, ask you to provide one.
+4. Read this README to prime session context
+5. Run compliance checklist (no-echo rule enforcement)
+
 ---
 
 ## Tech Stack
@@ -35,46 +59,6 @@ This reduces context transmitted per tool call and avoids loading irrelevant cod
 
 ---
 
-## What It Does
-
-| Feature | Token Savings |
-|---------|---------------|
-| `reasoning_effort: "low"` | Reduces chain-of-thought length |
-| `temperature: 0` | Deterministic output, no wasted exploration tokens |
-| Flash-tier model (`deepseek-v4-flash-free`) | Cheaper per-token inference |
-| Serena MCP server | Semantic code ops instead of full-file reads/writes |
-| Context7 MCP server | Fetches current docs instead of relying on stale training data |
-| `AGENTS.md` / `RULES_STRICT.md` rules | No repeating tool output, no preamble, no first-person, targeted reads |
-| Skills system | On-demand instruction loading (not every prompt) |
-
----
-
-## Quick Start
-
-```bash
-git clone https://github.com/dcerisano/opencode-token-reduce.git
-cd opencode-token-reduce
-opencode
-```
-
-To bootstrap a **new project** from this template into a separate directory, run the installer manually:
-
-```bash
-./install.sh
-```
-
-The `enforce` agent loads automatically, runs the mandatory workflow (Context7 setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
-
-### Startup sequence (automatic)
-
-1. Read Serena instructions manual
-2. Activate the project in Serena
-3. **Context7 setup** — Verify `CONTEXT7_API_KEY` is set. If missing, ask you to provide one.
-4. Read this README to prime session context
-5. Run compliance checklist (no-echo rule enforcement)
-
----
-
 ## Prerequisites
 
 - **OpenCode** — the editor-adjacent app that loads this config. Install from [opencode.ai](https://opencode.ai).
@@ -102,3 +86,4 @@ opencode-token-reduce/
 │   └── memories/              # Persistent agent memories
 └── .gitignore
 ```
+
