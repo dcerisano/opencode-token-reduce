@@ -118,15 +118,9 @@ opencode-token-reduce/
 ├── opencode.json              # Main config: agent, MCP servers, LSP, commands
 ├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
-├── .opencode/
-│   ├── .gitignore
-│   ├── package.json            # MCP server dependencies
-│   └── package-lock.json
 └── .serena/
     ├── .gitignore
     ├── project.yml             # Serena project config
-    ├── project.local.yml       # Local overrides
-    ├── cache/                  # LSP caches (auto-generated)
     └── memories/
         ├── conventions.md
         ├── core.md
