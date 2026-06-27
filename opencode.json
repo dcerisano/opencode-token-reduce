@@ -1,18 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": ["AGENTS.md"],
-  "model": "opencode/deepseek-v4-flash-free",
-  "provider": {
-    "opencode": {
-      "models": {
-        "deepseek-v4-flash-free": {
-          "options": {
-            "temperature": 0,
-            "top_p": 1,
-            "reasoningEffort": "low"
-          }
-        }
-      }
+  "agent": {
+    "build": {
+      "temperature": 0,
+      "top_p": 1
     }
   },
   "mcp": {
