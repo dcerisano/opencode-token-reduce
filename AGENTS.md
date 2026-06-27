@@ -30,4 +30,14 @@ No first person. No emoji. No casual language. State what was done, not who did 
 - Do NOT run git status, git diff, or git log before committing — wasted tokens.
 - On `push`: stage all (`git add -A`), commit, push in one sequence without intermediate inspection.
 
+## AFTER CHANGES — MEMORY UPDATES
+
+After completing meaningful project changes (new features, refactors, config changes, dependency updates), update relevant Serena memories to reflect the new state. Read the existing memory first, then update or add content. Do not update memories for trivial or one-off changes.
+
+- `mem:core` — update if project purpose, structure, or key invariants changed
+- `mem:tech_stack` — update if languages, tooling, or dependencies changed
+- `mem:conventions` — update if new conventions were established
+- `mem:suggested_commands` — update if custom commands or workflows changed
+- `mem:task_completion` — update if verification steps changed
+
 

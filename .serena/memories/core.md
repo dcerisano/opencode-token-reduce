@@ -6,7 +6,7 @@ Drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI t
 
 ```
 opencode.json              # Main config: agent, MCP servers, LSP, commands
-AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
+AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit, memory updates
 .opencode/
   package.json             # Opeencode plugin dependency (@opencode-ai/plugin 1.17.11)
   node_modules/
@@ -22,6 +22,7 @@ AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, comm
 - Two MCP servers: Serena (local, via uvx) and Context7 (remote, via CONTEXT7_API_KEY env var).
 - No-echo rule: tool output is never repeated, paraphrased, or summarized.
 - No first person, emoji, or casual language in responses.
+- After meaningful project changes, agents update relevant Serena memories (see AGENTS.md AFTER CHANGES — MEMORY UPDATES).
 
 ## References
 

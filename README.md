@@ -118,15 +118,19 @@ opencode-token-reduce/
 ├── opencode.json              # Main config: agent, MCP servers, LSP, commands
 ├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
-├── .opencode/                 # Custom agents, commands, plugins, skills
-└── .serena/
-    ├── .gitignore
-    ├── project.yml             # Serena project config
+├── .opencode/
+│   ├── .gitignore             # Ignores node_modules/, package.json, package-lock.json
+│   └── node_modules/          # @opencode-ai/plugin (auto-installed)
+├── .serena/
+    ├── .gitignore             # Ignores /cache, /project.local.yml
+    ├── project.yml            # Serena project config (languages, encoding, ignored paths)
+    ├── project.local.yml      # Local overrides (gitignored)
+    ├── cache/                 # LSP/index cache (gitignored)
     └── memories/
-        ├── conventions.md
-        ├── core.md
-        ├── memory_maintenance.md
-        ├── suggested_commands.md
-        ├── task_completion.md
-        └── tech_stack.md
+        ├── core.md            # Top-level source map and project invariants
+        ├── tech_stack.md      # Language and tooling details
+        ├── suggested_commands.md  # Project commands
+        ├── conventions.md     # Code style and design patterns
+        ├── task_completion.md # Verification commands
+        └── memory_maintenance.md  # Memory graph conventions
 ```
