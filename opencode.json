@@ -50,7 +50,7 @@
       "npm *": "allow",
       "npx *": "allow",
       "uvx *": "allow",
-      "git commit": "ask",
+      "git commit": "allow",
       "git push": "ask",
       "cat *": "deny",
       "grep *": "deny",
