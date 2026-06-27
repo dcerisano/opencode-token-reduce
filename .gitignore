@@ -1,9 +1,6 @@
 # OpenCode
 .opencode/node_modules/
 
-# Serena (generated locally)
-.serena/
-
 # OS
 .DS_Store
 Thumbs.db
