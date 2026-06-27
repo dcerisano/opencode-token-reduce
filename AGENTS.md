@@ -40,13 +40,6 @@ No first person. No emoji. No casual language. State what was done, not who did 
 - Never edit generated files. Check for "auto-generated".
 - Check .gitignore before staging. Run git status before commit.
 
-## COMMIT & PUSH
-
-1. Stage all intended files, then ask user: "commit & push?"
-2. Don't commit before asking.
-3. If approved, commit then push.
-4. Fetch first: `git fetch origin && git log --oneline HEAD..origin/HEAD`.
-
 ## CONTEXT7 — PRIMARY DOCS SOURCE
 
 Context7 MCP must be used **before** `webfetch` for any library/framework/SDK/API/CLI/cloud query. Use even when you think you know the answer.
