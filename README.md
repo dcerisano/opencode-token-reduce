@@ -6,7 +6,17 @@ Use it as a GitHub template to bootstrap new projects with a pre-configured toke
 
 ## Quick Start
 
+### Linux
+
 ```bash
+gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
+cd my-project
+opencode
+```
+
+### Windows
+
+```powershell
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
 opencode
