@@ -23,7 +23,6 @@ Or click **"Use this template"** at `https://github.com/dcerisano/opencode-token
 ```bash
 # GitHub CLI
 sudo apt install gh          # Debian/Ubuntu
-sudo dnf install gh          # Fedora
 
 # OpenCode
 curl -fsSL https://opencode.ai/install.sh | sh
