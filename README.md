@@ -119,7 +119,6 @@ opencode-token-reduce/
 ├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
 ├── .opencode/                 # Custom agents, commands, plugins, skills
-│   └── .gitkeep
 └── .serena/
     ├── .gitignore
     ├── project.yml             # Serena project config
