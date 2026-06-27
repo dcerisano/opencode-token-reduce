@@ -28,7 +28,7 @@ No first person. No emoji. No casual language. State what was done, not who did 
 
 - Editing >1 file? State approach in 1-3 sentences first.
 - Never edit generated files. Check for "auto-generated".
-- Native `edit` and `write` tools are denied in opencode.json. Use Serena's `replace_symbol_body`, `replace_content`, `insert_after_symbol`, or `insert_before_symbol` for all code modifications.
+- Native `edit` and `write` tools are denied in opencode.json. Use Serena's `serena_replace_symbol_body`, `serena_replace_content`, `serena_insert_after_symbol`, or `serena_insert_before_symbol` for all code modifications.
 
 ## DOCS LOOKUP
 
