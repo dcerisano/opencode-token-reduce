@@ -96,10 +96,7 @@ Serena and Context7 reduce token consumption across every phase of the SDLC by r
 
 ```
 opencode-token-reduce/
-├── opencode.json              # Main config: model, MCP servers, agent, permissions, commands
+├── opencode.json              # Main config: agent, MCP servers, LSP, commands
 ├── AGENTS.md                  # All rules: startup, tool discipline, Context7 docs, tone, commit
-├── .serena/
-│   ├── project.yml            # Serena project configuration
-│   └── memories/              # Persistent agent memories
 └── .gitignore
 ```
