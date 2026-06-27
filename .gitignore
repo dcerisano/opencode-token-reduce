@@ -1,5 +1,7 @@
 # OpenCode
 .opencode/node_modules/
+.opencode/package.json
+.opencode/package-lock.json
 
 # OS
 .DS_Store
