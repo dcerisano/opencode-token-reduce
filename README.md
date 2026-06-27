@@ -13,7 +13,7 @@ Use it as a GitHub template to bootstrap new projects with a pre-configured toke
 sudo apt install gh          # Debian/Ubuntu
 
 # OpenCode
-curl -fsSL https://opencode.ai/install.sh | sh
+curl -fsSL https://opencode.ai/install | bash
 
 # uvx (Serena dependency)
 curl -LsSf https://astral.sh/uv/install.sh | sh

@@ -9,10 +9,10 @@ opencode.json           # Model, MCP servers, agent definition, permissions, com
 AGENTS.md               # All rules: startup procedure, tool discipline, Context7 docs, tone
 README.md               # Project docs
 .gitignore              # Ignores node_modules, OS/IDE files, Python artifacts
-.opencode/
-  skills/
 .serena/
-  project.yml           # Serena project config (no language server, utf-8)
+  project.yml           # Serena project config (languages: markdown, json, bash; utf-8)
+  memories/
+    core.md             # This file — project invariants and conventions
 ```
 
 ## Key Invariants
@@ -24,11 +24,10 @@ README.md               # Project docs
 - AGENTS.md rules take precedence: no tool-output echo, serena tools mandatory, no first-person, no preamble, batch reads preferred.
 
 ## OpenCode Configuration
-- **Model**: `deepseek-v4-flash-free` via `opencode` provider — `temperature: 0`, `top_p: 1`, `reasoning_effort: low`, `thinking: enabled`
-- **MCP servers**: `serena` (local, `uvx`), `context7` (remote)
-- **Skills paths**: `.opencode/skills` (loaded on demand via `skill` tool)
+- **Model**: `deepseek-v4-flash-free` via `opencode` provider — `temperature: 0`, `top_p: 1`, `reasoningEffort: "low"`
+- **MCP servers**: `serena` (local, `uvx -p 3.13`), `context7` (remote)
 - **Commands**: `test`, `fix`, `status` templates for downstream projects
-- **Language backend**: LSP, but `languages: []` — no language server started (config-only repo)
+- **Language backend**: LSP enabled; Serena languages are `markdown`, `json`, `bash`
 - **Serena encoding**: utf-8
 
 ## File Conventions
