@@ -5,7 +5,7 @@
 **You MUST execute these steps in order on the very first message from the user, before any other action or response. Skipping or forgetting any step is a violation.**
 
 1. `serena_initial_instructions` and `context7_query-docs` with library ID `/websites/context7` and query `initialization`
-2. If `.serena/memories/` is empty, load the `memory-management` skill and create initial project memories.
+2. Use `serena_list_memories` to check if memories exist. If none exist, load the `memory-management` skill and delegate memory creation to a subagent via the `task` tool (type `general`) to avoid tool-call spillage in the main session.
 3. Wait for the user's next instruction.
 
 ## NO-ECHO RULE (overrides all)
@@ -29,7 +29,5 @@ No first person. No emoji. No casual language. State what was done, not who did 
 - Editing >1 file? State approach in 1-3 sentences first.
 - Never edit generated files. Check for "auto-generated".
 - Native `edit` and `write` tools are denied in opencode.json. Use Serena's `replace_symbol_body`, `replace_content`, `insert_after_symbol`, or `insert_before_symbol` for all code modifications. Use `bash` only for creating new files (e.g., `echo > newfile.js`) when Serena cannot create the file.
-- Do NOT run git status, git diff, or git log before committing — wasted tokens.
-- On `push`: stage all (`git add -A`), commit, push in one sequence without intermediate inspection.
 
 

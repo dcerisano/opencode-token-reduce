@@ -37,19 +37,5 @@
     "edit": "deny",
     "write": "deny"
   },
-  "lsp": true,
-  "command": {
-    "test": {
-      "template": "Run project tests and report pass/fail counts per tier. If any test fails, analyze the failure and fix it.",
-      "description": "Run all tests"
-    },
-    "fix": {
-      "template": "Run the build/tests, identify any failures, fix them, then re-run until green. If a fix requires more than 3 attempts on the same error, stop and summarize the problem.",
-      "description": "Build, fix failures, repeat until green"
-    },
-    "status": {
-      "template": "Show git branch, uncommitted changes, and recent commits.",
-      "description": "Show project status"
-    }
-  }
+  "lsp": true
 }
