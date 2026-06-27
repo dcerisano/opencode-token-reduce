@@ -33,6 +33,10 @@
       "enabled": true
     }
   },
+  "permission": {
+    "edit": "deny",
+    "write": "deny"
+  },
   "lsp": true,
   "command": {
     "test": {

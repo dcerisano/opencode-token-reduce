@@ -93,6 +93,22 @@ To add support for another language, edit `languages:` in `.serena/project.yml` 
 
 ---
 
+## Serena Memory Management
+
+AGENTS.md directs agents to keep Serena memories in sync after meaningful project changes. After completing features, refactors, config changes, or dependency updates, agents read the relevant memory, update it, or create new ones for uncovered domains — ensuring project knowledge accumulates over time without manual maintenance.
+
+Memory references use topic folders to group related domains:
+- `mem:core` — project purpose, structure, key invariants
+- `mem:tech_stack` — languages, tooling, dependencies
+- `mem:conventions` — code style and design patterns
+- `mem:suggested_commands` — custom workflows
+- `mem:task_completion` — verification steps
+- `mem:architecture`, `mem:deployment`, `mem:testing` — created as needed
+
+New projects inherit the graph root (`mem:core`) and expand organically as the codebase grows.
+
+---
+
 ## Token Savings
 
 Serena and Context7 reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries.

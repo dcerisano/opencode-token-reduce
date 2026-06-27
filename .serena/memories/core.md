@@ -17,11 +17,12 @@ AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, comm
 
 ## Key invariants
 
-- AGENTS.md startup steps execute before any other action: `serena_initial_instructions` + `context7_query-docs` with `/websites/context7` and query `initialization`.
+- AGENTS.md startup steps execute before any other action: `serena_initial_instructions` + `context7_query-docs` with `/websites/context7` and query `initialization`; then purge template memories if `core.md` still contains "opencode-token-reduce". Keep `memory_maintenance.md`.
 - `opencode.json` defines three custom commands: `test`, `fix`, `status`.
 - Two MCP servers: Serena (local, via uvx) and Context7 (remote, via CONTEXT7_API_KEY env var).
 - No-echo rule: tool output is never repeated, paraphrased, or summarized.
 - No first person, emoji, or casual language in responses.
+- Native `edit` and `write` tools are denied — all code modifications use Serena tools.
 - After meaningful project changes, agents update relevant Serena memories and create new ones for uncovered domains (see AGENTS.md AFTER CHANGES — MEMORY UPDATES).
 
 ## References
