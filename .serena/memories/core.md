@@ -5,26 +5,22 @@ Drop-in OpenCode configuration template that reduces token usage by pairing Sere
 
 ## Source Map
 ```
-opencode.json           # Model, MCP servers, skills paths, commands
-AGENTS.md               # Agent rules (tone, tool discipline, workflow)
+opencode.json           # Model, MCP servers, agent definition, permissions, commands
+AGENTS.md               # All rules: startup procedure, tool discipline, Context7 docs, tone
 README.md               # Project docs
 .gitignore              # Ignores node_modules, OS/IDE files, Python artifacts
 .opencode/
-  agent/
-    enforce.md           # Default agent — runs mandatory workflow, then enforces AGENTS.md
   skills/
     context7-mcp/       # SKILL.md — Context7 docs via MCP tools (resolve-library-id, query-docs)
-    mandatory-workflow/ # SKILL.md — session startup (serena setup, README priming)
 .serena/
   project.yml           # Serena project config (no language server, utf-8)
 ```
 
 ## Key Invariants
 - No application source code. All files are OpenCode configuration.
-- The `enforce` agent is the default entry point (set in `opencode.json`).
-- AGENTS.md is injected into every prompt via `instructions`.
-- Context7 MCP (`context7-mcp` skill) is the sole documentation lookup path.
-- The mandatory workflow skill is loaded once per session at startup.
+- No custom agent — uses OpenCode built-in defaults.
+- AGENTS.md is the single source of truth — injected into every prompt via `instructions`.
+- Context7 MCP is the sole documentation lookup path.
 - No tests, no build system, no package manager dependencies at project root.
 - AGENTS.md rules take precedence: no tool-output echo, serena tools mandatory, no first-person, no preamble, batch reads preferred.
 

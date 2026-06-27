@@ -1,10 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "enforce",
-  "instructions": ["RULES_STRICT.md", "AGENTS.md"],
-  "skills": {
-    "paths": [".opencode/skills"]
-  },
+  "instructions": ["AGENTS.md"],
   "model": "opencode/deepseek-v4-flash-free",
   "provider": {
     "opencode": {
@@ -43,6 +39,7 @@
   },
   "permission": {
     "bash": {
+      "echo *": "allow",
       "git commit": "ask",
       "git push": "ask"
     }

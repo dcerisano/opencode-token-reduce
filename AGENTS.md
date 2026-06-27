@@ -1,59 +1,60 @@
 # AGENT RULES
 
-## TOOLS BEFORE ANSWERING — NO REPEATING TOOL OUTPUT (OVERRIDES ALL)
+## STARTUP (mandatory, every session)
 
-- Use tools before answering. Never guess. This applies to all questions — code, configuration, rules, priming, metadata.
-- If the answer feels obvious from context, still verify with tools. Certainty is not a substitute for verification.
-- If uncertain, run a tool instead of speaking.
-- Never claim file access is missing — tools exist.
-- When tool results and primed context disagree, tool results win.
-- **Never repeat, paraphrase, or summarize what a tool already displayed.** The tool output is visible to the user. Saying "Already up to date" after a tool says it, or "Done" after an edit succeeds, or any echo of what the tool already communicated, is forbidden. Let the tool result speak for itself. If no response is needed beyond the tool output, say nothing.
+1. `serena_initial_instructions`
+2. `serena_activate_project`
+3. Verify `CONTEXT7_API_KEY` is set; if missing, prompt. Context7 is primary docs source (replaces `webfetch`).
+4. Read `README.md` via `serena_read_file`.
+5. All rules below apply for all subsequent operations.
 
-## SERENA TOOLS (MANDATORY — OVERRIDES EFFICIENCY)
+## NO-ECHO RULE (overrides all)
 
-- **Serena tools must be used for all code analysis, file reading, and editing operations.** Native tools (read, write, edit, grep, glob) are fallbacks only when no serena equivalent exists.
-- **Serena equivalents to native tools:** `serena_search_for_pattern` → native grep; `serena_find_file` → native glob; `serena_get_symbols_overview` / `serena_find_symbol` → native read; `serena_read_file` → native read; `serena_replace_content` → native edit.
-- `serena_get_diagnostics_for_file` must be called before suggesting fixes.
-- `serena_read_file` (not native read) is the primary way to read files.
-- Batch reads with serena: read multiple files in one call, not one at a time.
+Use tools before answering. Never guess. Never claim file access is missing. Tool results beat primed context.
+**Never repeat, paraphrase, or summarize tool output.** If a tool already communicated it, stay silent.
 
-## EFFICIENCY (APPLIES AFTER SERENA TOOLS)
+Per-response decision: tool just output? → no echo. Nothing to add? → say nothing.
 
-- Use `ls -a` instead of `ls` to show hidden files.
-- Read only what you need in each file. Prefer offset/limit over full files.
-- Don't echo unchanged content. State what changed, not the diff.
-- If stuck 3+ attempts on the same error, stop and summarize.
-- Don't pass env vars on the command line if already set in the environment.
+## SERENA FIRST
+
+Serena tools are mandatory for code analysis/reading/editing. Native tools (read/write/edit/grep/glob) are fallbacks only.
+- `serena_search_for_pattern` → grep, `serena_find_file` → glob, `serena_get_symbols_overview`/`serena_find_symbol` → read, `serena_read_file` → read, `serena_replace_content` → edit
+- Call `serena_get_diagnostics_for_file` before suggesting fixes.
+- Batch reads: read multiple files in one call, not one at a time.
+
+## EFFICIENCY
+
+- `ls -a` over `ls`. Read only what's needed; prefer offset/limit.
+- If stuck 3+ attempts on same error, stop and summarize.
 
 ## TONE
 
-- No first person (I, me, my, we, our, us). No emoji. No casual language.
-- State what was done, not who did it.
-- Be concise: no preamble, no explanation of obvious things.
-- Concision applies after verification. Never omit verification to preserve brevity.
+No first person. No emoji. No casual language. State what was done, not who did it.
 
 ## BEFORE CHANGES
 
-- Before editing >1 file, state the approach in 1-3 sentences.
-- Never edit generated files. Check for "auto-generated" first.
+- Editing >1 file? State approach in 1-3 sentences first.
+- Never edit generated files. Check for "auto-generated".
 - Check .gitignore before staging. Run git status before commit.
 
-## BEFORE PUSH
+## COMMIT & PUSH
 
-Sequence: change → verify (build/test/lint) → commit → push.
-Fetch first: git fetch origin && git log --oneline HEAD..origin/HEAD.
-If git-crypt: merge with -X theirs, never rebase.
+1. Stage all intended files, then ask user: "commit & push?"
+2. Don't commit before asking.
+3. If approved, commit then push.
+4. Before push: change → verify (build/test/lint) → commit → push.
+5. Fetch first: `git fetch origin && git log --oneline HEAD..origin/HEAD`.
+6. If git-crypt: merge with `-X theirs`, never rebase.
 
-## CONTEXT7 — MANDATORY BEFORE WEBFETCH
+## CONTEXT7 — PRIMARY DOCS SOURCE
 
-Context7 MCP is the **primary** documentation source and must be used **before** `webfetch` for any library, framework, SDK, API, CLI tool, or cloud service query. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — training data may not reflect recent changes.
+Context7 MCP must be used **before** `webfetch` for any library/framework/SDK/API/CLI/cloud query. Use even when you think you know the answer.
 
 Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
 
-### Mandatory flow
-
-1. **Always** start with `resolve-library-id` using the library name and the user's question, unless the user provides an exact library ID in `/org/project` format.
-2. Pick the best match (ID format: `/org/project`) by: exact name match, description relevance, code snippet count, source reputation (High/Medium preferred), and benchmark score (higher is better). If results don't look right, try alternate names or queries (e.g., "next.js" not "nextjs", or rephrase the question). Use version-specific IDs when the user mentions a version.
-3. `query-docs` with the selected library ID and the user's full question (not single words).
-4. Answer using the fetched docs.
-5. **Only if Context7 produces no relevant results** — fall back to `webfetch`. Do not skip Context7.
+**Lookup flow:**
+1. Start with `resolve-library-id` (unless user provides exact `/org/project` ID).
+2. Pick best match by: name match, description relevance, snippet count, source reputation (High/Medium), benchmark score.
+3. `query-docs` with selected library ID and the user's full question.
+4. Answer with fetched docs; include examples and cite version.
+5. Only if Context7 returns nothing relevant — fall back to `webfetch`.

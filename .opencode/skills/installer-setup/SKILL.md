@@ -1,6 +1,6 @@
 ---
 name: installer-setup
-description: Runs the installer for the opencode-token-reduce template. Loaded by the mandatory-workflow skill in the template repo. Not present in projects created by install.sh.
+description: Runs the installer for the opencode-token-reduce template. Not present in projects created by install.sh.
 ---
 
 # Installer Setup

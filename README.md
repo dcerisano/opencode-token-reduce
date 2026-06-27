@@ -9,6 +9,7 @@ Clone it, open it with OpenCode, and every session starts with a pre-configured 
 ```bash
 git clone https://github.com/dcerisano/opencode-token-reduce.git
 cd opencode-token-reduce
+alias opencode='opencode --prompt "init"'
 opencode
 ```
 
@@ -71,16 +72,12 @@ This reduces context transmitted per tool call and avoids loading irrelevant cod
 
 ```
 opencode-token-reduce/
-├── opencode.json              # Main config: model, MCP servers, skills, commands
-├── AGENTS.md                  # Agent rules: efficiency, tone, tool discipline
-├── RULES_STRICT.md            # Hard behavioral rules (no-echo, commit & push)
-├── install.sh                    # Manual installer — dependencies, project bootstrap, GitHub remote
+├── opencode.json              # Main config: model, MCP servers, agent, permissions, commands
+├── AGENTS.md                  # All rules: startup, tool discipline, Context7 docs, tone, commit
+├── install.sh                 # Manual installer — dependencies, project bootstrap, GitHub remote
 ├── .opencode/
-│   ├── agent/
-│   │   └── enforce.md         # Default agent: mandatory workflow entry point
 │   └── skills/
-│       ├── context7-mcp/      # Context7 via MCP tools (resolve-library-id, query-docs)
-│       └── mandatory-workflow/ # Session startup: Context7 setup, README priming, compliance
+│       └── context7-mcp/      # Context7 via MCP tools (resolve-library-id, query-docs)
 ├── .serena/
 │   ├── project.yml            # Serena project configuration
 │   └── memories/              # Persistent agent memories
