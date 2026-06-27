@@ -34,6 +34,8 @@ No first person. No emoji. No casual language. State what was done, not who did 
 
 After completing meaningful project changes (new features, refactors, config changes, dependency updates), update relevant Serena memories to reflect the new state. Read the existing memory first, then update or add content. Do not update memories for trivial or one-off changes.
 
+Create new memories for project domains not yet covered (e.g., `mem:architecture`, `mem:deployment`, `mem:testing`). Use topic folders to group related memories.
+
 - `mem:core` — update if project purpose, structure, or key invariants changed
 - `mem:tech_stack` — update if languages, tooling, or dependencies changed
 - `mem:conventions` — update if new conventions were established

@@ -22,7 +22,7 @@ AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, comm
 - Two MCP servers: Serena (local, via uvx) and Context7 (remote, via CONTEXT7_API_KEY env var).
 - No-echo rule: tool output is never repeated, paraphrased, or summarized.
 - No first person, emoji, or casual language in responses.
-- After meaningful project changes, agents update relevant Serena memories (see AGENTS.md AFTER CHANGES — MEMORY UPDATES).
+- After meaningful project changes, agents update relevant Serena memories and create new ones for uncovered domains (see AGENTS.md AFTER CHANGES — MEMORY UPDATES).
 
 ## References
 
