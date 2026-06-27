@@ -74,6 +74,25 @@ The Serena and Context7 MCP servers are configured in `opencode.json` and launch
 
 ---
 
+## Serena LSP Support
+
+Serena's semantic tools (symbol search, rename, diagnostics) require a language server (LSP) per language. The template pre-configures only **auto-installed** LSPs — Serena downloads these on first use with no manual setup:
+
+| Language     | LSP                  | Auto-installed |
+|--------------|----------------------|----------------|
+| Python       | pyright              | Yes            |
+| TypeScript   | typescript-language-server | Yes (via npm) |
+| Java         | eclipse-jdtls        | Yes            |
+| C/C++        | clangd               | Yes            |
+| Bash         | bash-language-server | Yes            |
+| JSON         | json-language-server | Yes            |
+
+Languages **not** in this list require manual LSP installation (e.g. `gopls` for Go, `rust-analyzer` for Rust via rustup). Serena does **not** notify you if a manually-installed LSP is missing — queries silently return empty results.
+
+To add support for another language, edit `languages:` in `.serena/project.yml` and install the required LSP. See the [Serena language support docs](https://oraios.github.io/serena/01-about/020_programming-languages.html) for each language's requirements.
+
+---
+
 ## Token Savings
 
 Serena and Context7 reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries.
