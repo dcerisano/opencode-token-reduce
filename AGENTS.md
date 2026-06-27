@@ -46,7 +46,9 @@ No first person. No emoji. No casual language. State what was done, not who did 
 
 - Editing >1 file? State approach in 1-3 sentences first.
 - Never edit generated files. Check for "auto-generated".
-- Check .gitignore before staging. Run git status before commit.
+- Do NOT run git status, git diff, or git log before committing — wasted tokens.
+- On `push`: stage all (`git add -A`), commit, push in one sequence without intermediate inspection.
+
 ## CONTEXT7 — EXCLUSIVE DOCS SOURCE
 
 **NEVER use `webfetch` for library/framework/SDK/API/CLI/cloud documentation.** Context7 is the only allowed source.
