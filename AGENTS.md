@@ -7,7 +7,7 @@
 1. `list_mcp_resources` for both MCP servers. If either fails or times out, set a warning to emit after startup.
 2. `serena_initial_instructions`
 3. `serena_activate_project`
-4. `context7_query-docs` with library ID `/anomalyco/opencode`
+4. `context7_query-docs` with library ID `/anomalyco/opencode` and query `configuration`
 5. **STOP. Do not make any further tool calls. Do not read skills. Do not read files. Do not ask questions. Do not output text. Wait for the user's next instruction.**
 6. All rules below apply for all subsequent operations.
 
