@@ -5,7 +5,9 @@ description: Use after completing meaningful project changes (new features, refa
 
 # Memory Management
 
-## When to update
+## Initial creation
+
+When creating initial project memories (`.serena/memories/` is empty), after writing all memories, stage them with `git add -A` and commit with message `"chore: initialize project memories"`.
 
 After completing meaningful project changes (new features, refactors, config changes, dependency updates), update relevant Serena memories to reflect the new state. Do not update for trivial or one-off changes.
 
