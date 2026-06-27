@@ -42,9 +42,7 @@ No first person. No emoji. No casual language. State what was done, not who did 
 1. Stage all intended files, then ask user: "commit & push?"
 2. Don't commit before asking.
 3. If approved, commit then push.
-4. Before push: change → verify (build/test/lint) → commit → push.
-5. Fetch first: `git fetch origin && git log --oneline HEAD..origin/HEAD`.
-6. If git-crypt: merge with `-X theirs`, never rebase.
+4. Fetch first: `git fetch origin && git log --oneline HEAD..origin/HEAD`.
 
 ## CONTEXT7 — PRIMARY DOCS SOURCE
 
@@ -52,9 +50,4 @@ Context7 MCP must be used **before** `webfetch` for any library/framework/SDK/AP
 
 Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
 
-**Lookup flow:**
-1. Start with `resolve-library-id` (unless user provides exact `/org/project` ID).
-2. Pick best match by: name match, description relevance, snippet count, source reputation (High/Medium), benchmark score.
-3. `query-docs` with selected library ID and the user's full question.
-4. Answer with fetched docs; include examples and cite version.
-5. Only if Context7 returns nothing relevant — fall back to `webfetch`.
+Full lookup flow in `.opencode/skills/context7-mcp/SKILL.md`.
