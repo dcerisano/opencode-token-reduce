@@ -4,29 +4,7 @@ A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI
 
 Use it as a GitHub template to bootstrap new projects with a pre-configured token-reducing environment.
 
-## Quick Start
-
-### Linux
-
-```bash
-gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
-cd my-project
-opencode
-```
-
-### Windows
-
-```powershell
-gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
-cd my-project
-opencode
-```
-
-Or click **"Use this template"** at `https://github.com/dcerisano/opencode-token-reduce`, then clone and run `opencode`.
-
----
-
-## Prerequisites
+## Installation
 
 ### Linux
 
@@ -45,6 +23,11 @@ export CONTEXT7_API_KEY="your_key_here"
 
 # Quick startup alias
 alias oc='opencode --prompt "startup"'
+
+# Create a new project from this template
+gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
+cd my-project
+opencode
 ```
 
 ### Windows
@@ -64,6 +47,11 @@ $env:CONTEXT7_API_KEY = "your_key_here"
 
 # Quick startup alias
 function oc { opencode --prompt "startup" }
+
+# Create a new project from this template
+gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
+cd my-project
+opencode
 ```
 
 The Serena and Context7 MCP servers are configured in `opencode.json` and launch automatically on startup.
