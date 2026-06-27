@@ -76,6 +76,24 @@ The Serena and Context7 MCP servers are configured in `opencode.json` and launch
 
 ---
 
+## Token Savings
+
+Serena and Context7 reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries.
+
+| SDLC Phase | Without | With Serena + Context7 | Est. Savings |
+|---|---|---|---|
+| **Code Comprehension** | Read entire files to find relevant symbols | `get_symbols_overview` + `find_symbol` — fetch only symbol signatures and locations | 60-80% |
+| **Documentation Research** | webfetch full docs pages or rely on stale training data | `context7_query-docs` returns concise, versioned API snippets | 70-90% |
+| **Code Editing** | Read full file, then rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` — edit at symbol level | 40-60% |
+| **Search & Debugging** | grep/glob across codebase, read results to understand context | `find_referencing_symbols` / `find_implementations` — semantic cross-references | 50-70% |
+| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` — direct LSP diagnostic retrieval | 60-80% |
+| **Library/Tool Setup** | Read entire setup guide, guess correct config | `context7_query-docs` with version-pinned library ID | 70-90% |
+| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` — single-call rename across codebase | 80-90% |
+
+**Overall projection:** 50-70% fewer tokens consumed over the lifespan of a professional-grade project, with the largest gains in early phases (comprehension, research) and refactoring.
+
+---
+
 ## File Layout
 
 ```
