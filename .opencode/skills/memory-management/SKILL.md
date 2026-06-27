@@ -17,6 +17,10 @@ After completing meaningful project changes (new features, refactors, config cha
 
 Create new memories for uncovered domains (e.g., `mem:architecture`, `mem:deployment`, `mem:testing`). Use topic folders to group related memories.
 
+## Initial creation (startup)
+
+When no memories exist (check via `serena_list_memories`), delegate initial memory creation to a subagent via the `task` tool (type `general`) to avoid tool-call spillage in the main session.
+
 ## Discovery model
 
 - Progressive discovery through references, building a graph of memories.
