@@ -26,7 +26,7 @@ README.md               # Project docs
 
 ## OpenCode Configuration
 - **Model**: `deepseek-v4-flash-free` via `opencode` provider — `temperature: 0`, `top_p: 1`, `reasoning_effort: low`, `thinking: enabled`
-- **MCP servers**: `serena` (local, `uvx`), `context7` (remote, requires `CONTEXT7_API_KEY`)
+- **MCP servers**: `serena` (local, `uvx`), `context7` (remote)
 - **Skills paths**: `.opencode/skills` (loaded on demand via `skill` tool)
 - **Commands**: `test`, `fix`, `status` templates for downstream projects
 - **Language backend**: LSP, but `languages: []` — no language server started (config-only repo)
@@ -41,7 +41,6 @@ README.md               # Project docs
 
 ## External Dependencies
 - `uvx` — required for Serena (installed by `install.sh` via `curl -LsSf https://astral.sh/uv/install.sh | sh`)
-- `CONTEXT7_API_KEY` — required for Context7 MCP (free at context7.com)
 
 ## References
 - Available commands: `mem:suggested_commands`

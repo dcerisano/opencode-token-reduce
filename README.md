@@ -9,7 +9,7 @@ Clone it, open it with OpenCode, and every session starts with a pre-configured 
 ```bash
 git clone https://github.com/dcerisano/opencode-token-reduce.git
 cd opencode-token-reduce
-alias opencode='opencode --prompt "init"'
+alias opencode='opencode --prompt "init opencode-token-reduce"'
 opencode
 ```
 
@@ -18,16 +18,6 @@ To bootstrap a **new project** from this template into a separate directory, run
 ```bash
 ./install.sh
 ```
-
-The `enforce` agent loads automatically, runs the mandatory workflow (Context7 setup, README priming, compliance validation), and enforces all token-reduction rules for the rest of the session.
-
-### Startup sequence (automatic)
-
-1. Read Serena instructions manual
-2. Activate the project in Serena
-3. **Context7 setup** — Verify `CONTEXT7_API_KEY` is set. If missing, ask you to provide one.
-4. Read this README to prime session context
-5. Run compliance checklist (no-echo rule enforcement)
 
 ---
 

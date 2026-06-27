@@ -2,11 +2,14 @@
 
 ## STARTUP (mandatory, every session)
 
-1. `serena_initial_instructions`
-2. `serena_activate_project`
-3. Verify `CONTEXT7_API_KEY` is set; if missing, prompt. Context7 is primary docs source (replaces `webfetch`).
-4. Read `README.md` via `serena_read_file`.
-5. All rules below apply for all subsequent operations.
+**Strict sequencing — do exactly these steps in order. No other tool calls. No text output until startup is complete.**
+
+1. `list_mcp_resources` for both MCP servers. If either fails or times out, set a warning to emit after startup.
+2. `serena_initial_instructions`
+3. `serena_activate_project`
+4. `context7_query-docs` with library ID `/anomalyco/opencode`
+5. **STOP. Do not make any further tool calls. Do not read skills. Do not read files. Do not ask questions. Do not output text. Wait for the user's next instruction.**
+6. All rules below apply for all subsequent operations.
 
 ## NO-ECHO RULE (overrides all)
 
