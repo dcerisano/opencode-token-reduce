@@ -4,7 +4,7 @@
 
 **You MUST execute these steps in order on the very first message from the user, before any other action or response. Skipping or forgetting any step is a violation.**
 
-1. `serena_initial_instructions`, `serena_activate_project`, and `context7_query-docs` with library ID `/websites/context7` and query `initialization`
+1. `serena_initial_instructions` and `context7_query-docs` with library ID `/websites/context7` and query `initialization`
 2. Wait for the user's next instruction.
 
 ## NO-ECHO RULE (overrides all)
