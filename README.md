@@ -54,7 +54,7 @@ cd my-project
 opencode
 ```
 
-The Serena and Context7 MCP servers are configured in `opencode.json` and launch automatically on startup.
+The Serena and Context7 MCP servers are configured in `opencode.json` and launch automatically on startup. The Serena web dashboard is available at [http://127.0.0.1:24282/dashboard/index.html](http://127.0.0.1:24282/dashboard/index.html) (auto-launch is disabled to avoid unnecessary tray/browser windows).
 
 ---
 
