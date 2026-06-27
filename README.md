@@ -27,7 +27,7 @@ alias oc='opencode --prompt "startup"'
 # Create a new project from this template
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
-opencode
+oc
 ```
 
 ### Windows
@@ -51,7 +51,7 @@ function oc { opencode --prompt "startup" }
 # Create a new project from this template
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
-opencode
+oc
 ```
 
 The Serena and Context7 MCP servers are configured in `opencode.json` and launch automatically on startup. The Serena web dashboard is available at [http://127.0.0.1:24282/dashboard/index.html](http://127.0.0.1:24282/dashboard/index.html) (auto-launch is disabled to avoid unnecessary tray/browser windows).
@@ -99,13 +99,13 @@ Serena and Context7 reduce token consumption across every phase of the SDLC by r
 
 | SDLC Phase | Without | With Serena + Context7 | Est. Savings |
 |---|---|---|---|
-| **Code Comprehension** | Read entire files to find relevant symbols | `get_symbols_overview` + `find_symbol` — fetch only symbol signatures and locations | 60-80% |
-| **Documentation Research** | webfetch full docs pages or rely on stale training data | `context7_query-docs` returns concise, versioned API snippets | 70-90% |
-| **Code Editing** | Read full file, then rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` — edit at symbol level | 40-60% |
-| **Search & Debugging** | grep/glob across codebase, read results to understand context | `find_referencing_symbols` / `find_implementations` — semantic cross-references | 50-70% |
-| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` — direct LSP diagnostic retrieval | 60-80% |
-| **Library/Tool Setup** | Read entire setup guide, guess correct config | `context7_query-docs` with version-pinned library ID | 70-90% |
-| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` — single-call rename across codebase | 80-90% |
+| **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` — symbol-level fetch | 60-80% |
+| **Documentation Research** | Read full docs or use stale training data | `context7_query-docs` — versioned API snippets | 70-90% |
+| **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` — symbol-level edit | 40-60% |
+| **Search & Debugging** | grep/glob across codebase, read to understand | `find_referencing_symbols` / `find_implementations` — semantic refs | 50-70% |
+| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` — LSP diagnostics | 60-80% |
+| **Library/Tool Setup** | Read setup guide, guess config | `context7_query-docs` — version-pinned lookups | 70-90% |
+| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` — single-call rename | 80-90% |
 
 **Overall projection:** 50-70% fewer tokens consumed over the lifespan of a professional-grade project, with the largest gains in early phases (comprehension, research) and refactoring.
 
@@ -116,6 +116,22 @@ Serena and Context7 reduce token consumption across every phase of the SDLC by r
 ```
 opencode-token-reduce/
 ├── opencode.json              # Main config: agent, MCP servers, LSP, commands
-├── AGENTS.md                  # All rules: startup, tool discipline, Context7 docs, tone, commit
-└── .gitignore
+├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
+├── .gitignore
+├── .opencode/
+│   ├── .gitignore
+│   ├── package.json            # MCP server dependencies
+│   └── package-lock.json
+└── .serena/
+    ├── .gitignore
+    ├── project.yml             # Serena project config
+    ├── project.local.yml       # Local overrides
+    ├── cache/                  # LSP caches (auto-generated)
+    └── memories/
+        ├── conventions.md
+        ├── core.md
+        ├── memory_maintenance.md
+        ├── suggested_commands.md
+        ├── task_completion.md
+        └── tech_stack.md
 ```
