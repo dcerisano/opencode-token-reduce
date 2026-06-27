@@ -34,12 +34,8 @@ project_name: "opencode-token-reduce"
 languages:
   - python
   - typescript
-  - go
-  - rust
   - java
   - cpp
-  - ruby
-  - php
   - bash
   - json
 

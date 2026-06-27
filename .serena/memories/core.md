@@ -8,7 +8,7 @@ A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI
 opencode-token-reduce/
 ├── opencode.json       # Main config: agent, MCP servers (Serena + Context7), LSP, command templates
 ├── AGENTS.md           # Agent rules: startup sequence, no-echo, efficiency, tone, commit discipline
-├── .serena/project.yml # Serena project config: languages pre-populated with broad defaults
+├── .serena/project.yml # Serena project config: languages = auto-installed LSPs only
 └── .gitignore          # Ignores .opencode/node_modules/, .serena/cache, OS/IDE/Python artifacts
 ```
 
