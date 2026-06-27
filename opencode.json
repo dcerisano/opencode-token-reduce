@@ -10,7 +10,7 @@
             "temperature": 0,
             "top_p": 1,
             "thinking": { "type": "enabled" },
-            "reasoning_effort": "low"
+            "reasoning_effort": "medium"
           }
         }
       }
@@ -39,11 +39,30 @@
     }
   },
   "permission": {
+    "read": "deny",
+    "write": "deny",
+    "edit": "deny",
+    "grep": "deny",
+    "glob": "deny",
     "bash": {
       "echo *": "allow",
+      "git *": "allow",
+      "npm *": "allow",
+      "npx *": "allow",
+      "uvx *": "allow",
       "git commit": "ask",
-      "git push": "ask"
-    }
+      "git push": "ask",
+      "cat *": "deny",
+      "grep *": "deny",
+      "find *": "deny",
+      "head *": "deny",
+      "tail *": "deny",
+      "sed *": "deny",
+      "awk *": "deny",
+      "*": "ask"
+    },
+    "webfetch": "deny",
+    "websearch": "deny"
   },
   "lsp": true,
   "command": {

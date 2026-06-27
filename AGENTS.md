@@ -16,12 +16,22 @@ Use tools before answering. Never guess. Never claim file access is missing. Too
 
 Per-response decision: tool just output? → no echo. Nothing to add? → say nothing.
 
-## SERENA FIRST
+## SERENA IS THE ONLY FILE ACCESS (ZERO EXCEPTIONS)
 
-Serena tools are mandatory for code analysis/reading/editing. Native tools (read/write/edit/grep/glob) are fallbacks only.
-- `serena_search_for_pattern` → grep, `serena_find_file` → glob, `serena_get_symbols_overview`/`serena_find_symbol` → read, `serena_read_file` → read, `serena_replace_content` → edit
-- Call `serena_get_diagnostics_for_file` before suggesting fixes.
-- Batch reads: read multiple files in one call, not one at a time.
+**Native tools (read/write/edit/grep/glob/bash-for-file-ops) are FORBIDDEN.** Serena is the only tool for all file operations. There are zero exceptions, zero fallbacks, zero circumstances where native tools may be used.
+
+Serena tool mappings (mandatory, no alternatives):
+- `serena_read_file` — reading files (NEVER use native `read`)
+- `serena_search_for_pattern` — searching file contents (NEVER use native `grep`)
+- `serena_find_file` — finding files by name (NEVER use native `glob`)
+- `serena_get_symbols_overview` / `serena_find_symbol` — code symbol analysis (NEVER use native `read`)
+- `serena_replace_content` — editing files (NEVER use native `edit`)
+- `serena_create_text_file` — creating new files (NEVER use native `write`)
+- `serena_get_diagnostics_for_file` — checking diagnostics before fixes
+- `serena_insert_after_symbol` / `serena_insert_before_symbol` — adding code
+- `serena_replace_symbol_body` — replacing function/class bodies
+
+Even if Serena errors or seems slow, do not fall back to native tools. If Serena is genuinely unavailable, stop and report it.
 
 ## EFFICIENCY
 
@@ -37,8 +47,12 @@ No first person. No emoji. No casual language. State what was done, not who did 
 - Editing >1 file? State approach in 1-3 sentences first.
 - Never edit generated files. Check for "auto-generated".
 - Check .gitignore before staging. Run git status before commit.
-## CONTEXT7 — PRIMARY DOCS SOURCE
+## CONTEXT7 — EXCLUSIVE DOCS SOURCE
 
-Context7 MCP must be used **before** `webfetch` for any library/framework/SDK/API/CLI/cloud query. Use even when you think you know the answer.
+**NEVER use `webfetch` for library/framework/SDK/API/CLI/cloud documentation.** Context7 is the only allowed source.
 
-Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
+Contact: Always call `context7_resolve-library-id` first to get the library ID, then `context7_query-docs`. Every single time. If Context7 has no docs on the topic, stop and report it — do not fall back to webfetch.
+
+Reason: This repo exists to enforce Context7-first lookup. Violating this defeats the entire purpose.
+
+Do not use Context7 for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
