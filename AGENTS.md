@@ -39,11 +39,8 @@ No first person. No emoji. No casual language. State what was done, not who did 
 - Editing >1 file? State approach in 1-3 sentences first.
 - Never edit generated files. Check for "auto-generated".
 - Check .gitignore before staging. Run git status before commit.
-
 ## CONTEXT7 — PRIMARY DOCS SOURCE
 
 Context7 MCP must be used **before** `webfetch` for any library/framework/SDK/API/CLI/cloud query. Use even when you think you know the answer.
 
 Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
-
-Full lookup flow in `.opencode/skills/context7-mcp/SKILL.md`.

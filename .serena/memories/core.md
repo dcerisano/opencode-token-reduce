@@ -11,7 +11,6 @@ README.md               # Project docs
 .gitignore              # Ignores node_modules, OS/IDE files, Python artifacts
 .opencode/
   skills/
-    context7-mcp/       # SKILL.md — Context7 docs via MCP tools (resolve-library-id, query-docs)
 .serena/
   project.yml           # Serena project config (no language server, utf-8)
 ```

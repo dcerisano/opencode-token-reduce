@@ -67,7 +67,6 @@ opencode-token-reduce/
 ├── install.sh                 # Manual installer — dependencies, project bootstrap, GitHub remote
 ├── .opencode/
 │   └── skills/
-│       └── context7-mcp/      # Context7 via MCP tools (resolve-library-id, query-docs)
 ├── .serena/
 │   ├── project.yml            # Serena project configuration
 │   └── memories/              # Persistent agent memories
