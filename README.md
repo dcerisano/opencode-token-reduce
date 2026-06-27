@@ -65,8 +65,6 @@ opencode-token-reduce/
 ├── opencode.json              # Main config: model, MCP servers, agent, permissions, commands
 ├── AGENTS.md                  # All rules: startup, tool discipline, Context7 docs, tone, commit
 ├── install.sh                 # Manual installer — dependencies, project bootstrap, GitHub remote
-├── .opencode/
-│   └── skills/
 ├── .serena/
 │   ├── project.yml            # Serena project configuration
 │   └── memories/              # Persistent agent memories
