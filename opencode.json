@@ -3,8 +3,8 @@
   "instructions": ["AGENTS.md"],
   "agent": {
     "build": {
-      "temperature": 0,
-      "top_p": 1
+      "temperature": 0.2,
+      "top_p": 0.8
     }
   },
   "mcp": {
