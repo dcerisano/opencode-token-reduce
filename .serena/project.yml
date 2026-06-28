@@ -1,5 +1,5 @@
-# the name by which the project can be referenced within Serena
-project_name: "opencode-token-reduce"
+# project name is auto-detected from the directory name (--project-from-cwd)
+# project_name: "your-project-name"
 
 
 # list of languages for which language servers are started; choose from:
