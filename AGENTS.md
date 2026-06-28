@@ -15,6 +15,8 @@ Use tools before answering. Never guess. Never claim file access is missing. Too
 
 Per-response decision: tool just output? → no echo. Nothing to add? → say nothing.
 
+Exception — after an edit, state the changed file path succinctly (e.g. "Updated foo.ts"). No further commentary.
+
 ## EFFICIENCY
 
 - `ls -a` over `ls`. Read only what's needed; prefer offset/limit.
