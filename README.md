@@ -22,6 +22,20 @@ Serena and Context7 reduce token consumption across every phase of the SDLC by r
 
 ---
 
+## Migrate into an Existing Project
+
+To apply the token-reduce template to an existing project, use the `/migrate` command:
+
+```bash
+opencode --prompt "/migrate /path/to/your/project"
+```
+
+The command clones the template, merges config files into your project, commits, and pushes. **Conflicts may arise** if your project already has an `opencode.json`, `.opencode/`, or `.serena/` directory — the command resolves them by preferring your existing business logic while accepting template tooling config. Review the merge commit before pushing if you want manual control.
+
+Requires git push access to the target repository's remote.
+
+---
+
 ## Installation
 
 ### Linux
