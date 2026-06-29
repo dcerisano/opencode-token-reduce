@@ -156,6 +156,8 @@ opencode-token-reduce/
 ├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
 ├── .opencode/
+│   ├── commands/
+│   │   └── migrate.md            # /migrate — merge template into existing project
 │   └── skills/
 │       └── memory-management/
 │           └── SKILL.md
