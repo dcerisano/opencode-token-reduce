@@ -119,18 +119,10 @@ opencode-token-reduce/
 ├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
 ├── .opencode/
-│   ├── .gitignore             # Ignores node_modules/, package.json, package-lock.json
-│   └── node_modules/          # @opencode-ai/plugin (auto-installed)
+│   └── .gitignore             # Ignores node_modules/, package.json, package-lock.json
 ├── .serena/
     ├── .gitignore             # Ignores /cache, /project.local.yml
     ├── project.yml            # Serena project config (languages, encoding, ignored paths)
-    ├── project.local.yml      # Local overrides (gitignored)
-    ├── cache/                 # LSP/index cache (gitignored)
     └── memories/
-        ├── core.md            # Top-level source map and project invariants
-        ├── tech_stack.md      # Language and tooling details
-        ├── suggested_commands.md  # Project commands
-        ├── conventions.md     # Code style and design patterns
-        ├── task_completion.md # Verification commands
-        └── memory_maintenance.md  # Memory graph conventions
+        └── .gitignore         # Empty — keeps the directory tracked
 ```
