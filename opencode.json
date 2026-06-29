@@ -35,7 +35,12 @@
   },
   "permission": {
     "edit": "deny",
-    "write": "deny"
+    "write": "deny",
+    "bash": {
+      "git commit*": "ask",
+      "git push*": "ask",
+      "*": "allow"
+    }
   },
   "lsp": true
 }
