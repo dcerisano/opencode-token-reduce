@@ -15,12 +15,9 @@ The subagent receives:
 
 You are migrating the opencode-token-reduce template into the existing project at `{confirmed_path}`.
 
-If the source `.serena/project.yml` contains `no-onboarding` in `added_modes`, ensure the `no-onboarding` entry is removed from the copied version so the target project runs its own onboarding.
-
 1. Copy these files from the current repo into target (do NOT copy README.md or any `memory.md` files):
 2. Merge into target:
    - `opencode.json`
-   - `AGENTS.md`
    - `.opencode/` (merge — keep existing commands/skills/plugins)
    - `.serena/` (merge — keep existing memories/config)
    - `.gitignore` (append missing entries)

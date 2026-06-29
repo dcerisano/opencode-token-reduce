@@ -156,7 +156,7 @@ To add support for another language, edit `languages:` in `.serena/project.yml` 
 
 ```
 opencode-token-reduce/
-├── opencode.json              # Main config: agent, MCP servers, LSP, commands
+├── opencode.json              # Main config: MCP servers, agents, LSP, permissions
 ├── .gitignore
 ├── .opencode/
 │   ├── commands/
