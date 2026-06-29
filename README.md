@@ -1,6 +1,9 @@
 # opencode-token-reduce
 
-> **⚠️ WORK IN PROGRESS** — Contributions, suggestions, and PRs are welcome!
+## ⚠️ WORK IN PROGRESS
+
+Contributions, suggestions, and PRs are welcome!
+
 A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI token usage by pairing **Serena** (efficient code analysis and editing) with **Context7** (live documentation lookup) under strict efficiency rules.
 
 Use it as a GitHub template to bootstrap new projects with a pre-configured token-reducing environment. The template is model-agnostic — it works with any LLM backend that OpenCode supports.
