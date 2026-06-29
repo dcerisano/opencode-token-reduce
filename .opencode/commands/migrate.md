@@ -15,14 +15,16 @@ The subagent receives:
 
 You are migrating the opencode-token-reduce template into the existing project at `{confirmed_path}`.
 
-1. Clone template from `https://github.com/dcerisano/opencode-token-reduce` to a temp dir.
-2. Merge these files into target:
+If the source `.serena/project.yml` contains `no-onboarding` in `added_modes`, ensure the `no-onboarding` entry is removed from the copied version so the target project runs its own onboarding.
+
+1. Copy these files from the current repo into target (do NOT copy README.md or any `memory.md` files):
+2. Merge into target:
    - `opencode.json`
    - `AGENTS.md`
    - `.opencode/` (merge — keep existing commands/skills/plugins)
    - `.serena/` (merge — keep existing memories/config)
    - `.gitignore` (append missing entries)
-3. Show the user a summary of what changed (files added, modified, conflicted) using `question` to ask for approval before committing.
-4. If approved, stage, commit with message `chore: integrate opencode-token-reduce template`, and push. If rejected, abort and leave the working tree as-is.
+3. Show the user a summary of what changed (files added, modified, conflicted).
+4. Stage all changes. Inform the user the changes are staged and ready for review/testing. Do NOT commit or push — the user will handle that manually.
 5. On merge conflicts: prefer target's code for business logic, template's files for tooling.
 5. Instruct user to quit/restart OpenCode.

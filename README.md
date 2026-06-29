@@ -45,7 +45,7 @@ opencode --prompt "startup"
 oc
 ```
 
-OpenCode loads `AGENTS.md`, launches Serena and Context7, and prompts for the first task with token-reducing defaults in place.
+OpenCode launches Serena and Context7, and prompts for the first task with token-reducing defaults in place.
 
 ---
 
@@ -157,7 +157,6 @@ To add support for another language, edit `languages:` in `.serena/project.yml` 
 ```
 opencode-token-reduce/
 ├── opencode.json              # Main config: agent, MCP servers, LSP, commands
-├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
 ├── .opencode/
 │   ├── commands/
