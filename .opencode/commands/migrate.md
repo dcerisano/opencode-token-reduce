@@ -7,7 +7,7 @@ Ask the user for a target directory path using the `question` tool. Keep asking 
 1. Exists as a directory (`bash` with `test -d "$path"`)
 2. Is a git repository (`bash` with `git -C "$path" rev-parse --git-dir`)
 
-Once a valid path is confirmed, proceed with the full migration workflow below.
+Once a valid path is confirmed, check for overwrites in the target. If any of `opencode.json`, `.opencode/`, or `.serena/` already exist in the target, abort with a message listing which files would be overwritten. Do NOT proceed with migration.
 
 Delegate the full workflow to a `task` subagent (type `general`) so output is collapsed. Pass the confirmed path as the target.
 
@@ -20,8 +20,7 @@ You are migrating the opencode-token-reduce template into the existing project a
    - `opencode.json`
    - `.opencode/` (merge — keep existing commands/skills/plugins)
    - `.serena/` (merge — keep existing memories/config)
-   - `.gitignore` (append missing entries)
 3. Show the user a summary of what changed (files added, modified, conflicted).
 4. Stage all changes. Inform the user the changes are staged and ready for review/testing. Do NOT commit or push — the user will handle that manually.
 5. On merge conflicts: prefer target's code for business logic, template's files for tooling.
-5. Instruct user to quit/restart OpenCode.
+6. Instruct user to quit/restart OpenCode.
