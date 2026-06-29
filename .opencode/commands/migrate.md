@@ -7,7 +7,7 @@ Ask the user for a target directory path using the `question` tool. Keep asking 
 1. Exists as a directory (`bash` with `test -d "$path"`)
 2. Is a git repository (`bash` with `git -C "$path" rev-parse --git-dir`)
 
-Once a valid path is confirmed, check for overwrites in the target. If any of `opencode.json`, `.opencode/`, or `.serena/` already exist in the target, abort with a message listing which files would be overwritten. Do NOT proceed with migration.
+Once a valid path is confirmed, enumerate ALL files the template would copy (excluding README.md, memory.md files, cache/, node_modules/, package-lock.json, package.json). For each, check with `bash test -f "$target/$f"` whether that file already exists in the target. Collect every conflicting path. If ANY conflicts exist, display the full list to the user and abort. Do NOT proceed.
 
 Delegate the full workflow to a `task` subagent (type `general`) so output is collapsed. Pass the confirmed path as the target.
 
