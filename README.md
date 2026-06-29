@@ -119,10 +119,12 @@ opencode-token-reduce/
 ├── AGENTS.md                  # Startup, tool discipline, Context7 docs, tone, commit
 ├── .gitignore
 ├── .opencode/
-│   └── .gitignore             # Ignores node_modules/, package.json, package-lock.json
+│   └── skills/
+│       └── memory-management/
+│           └── SKILL.md
 ├── .serena/
     ├── .gitignore             # Ignores /cache, /project.local.yml
     ├── project.yml            # Serena project config (languages, encoding, ignored paths)
     └── memories/
-        └── .gitignore         # Empty — keeps the directory tracked
+        └── .gitkeep           # Placeholder — keeps the directory tracked
 ```
