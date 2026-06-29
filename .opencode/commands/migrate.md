@@ -3,17 +3,25 @@ description: OpenCode token-reduce template into an existing project
 agent: build
 ---
 
-You are migrating the opencode-token-reduce template into the existing project at `$ARGUMENTS`.
+Ask the user for a target directory path using the `question` tool. Keep asking until the user provides a path that:
+1. Exists as a directory (`bash` with `test -d "$path"`)
+2. Is a git repository (`bash` with `git -C "$path" rev-parse --git-dir`)
 
-1. Verify the path exists, is a directory, and is a git repository.
-2. Clone the template from `https://github.com/dcerisano/opencode-token-reduce` into a temporary directory.
-3. Copy these template files into the target project, preserving any existing files the target already has:
+Once a valid path is confirmed, proceed with the full migration workflow below.
+
+Delegate the full workflow to a `task` subagent (type `general`) so output is collapsed. Pass the confirmed path as the target.
+
+The subagent receives:
+
+You are migrating the opencode-token-reduce template into the existing project at `{confirmed_path}`.
+
+1. Clone template from `https://github.com/dcerisano/opencode-token-reduce` to a temp dir.
+2. Merge these files into target:
    - `opencode.json`
    - `AGENTS.md`
-   - `.opencode/` (merge — do not overwrite existing commands, skills, or plugins the target owns)
-   - `.serena/` (merge — keep existing memories and config)
-   - `.gitignore` (append template entries if not present)
-4. Stage all changes in the target repo, commit with message `chore: integrate opencode-token-reduce template`, and push.
-5. If merge conflicts arise during push, resolve them by accepting both sides where reasonable (prefer the target's existing code for business logic; prefer the template's files for tooling config). Complete the merge commit and push.
-
-After completion, tell the user to quit and restart opencode for the new config to take effect.
+   - `.opencode/` (merge — keep existing commands/skills/plugins)
+   - `.serena/` (merge — keep existing memories/config)
+   - `.gitignore` (append missing entries)
+3. Stage, commit with message `chore: integrate opencode-token-reduce template`, push.
+4. On merge conflicts: prefer target's code for business logic, template's files for tooling.
+5. Instruct user to quit/restart OpenCode.

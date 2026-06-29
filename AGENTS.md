@@ -17,6 +17,10 @@ Per-response decision: tool just output? → no echo. Nothing to add? → say no
 
 Exception — after an edit, state the changed file path succinctly (e.g. "Updated foo.ts"). No further commentary.
 
+## SUBAGENT RULE — ALL TOOL CALLS
+
+Every tool call MUST be delegated to a `task` subagent (type `general`). The subagent executes the tool, then returns the raw result as-is (no summarization). This collapses verbose MCP output into a collapsed task section in the session, preventing tool-output spillage.
+
 ## EFFICIENCY
 
 - `ls -a` over `ls`. Read only what's needed; prefer offset/limit.

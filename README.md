@@ -22,6 +22,29 @@ Serena and Context7 reduce token consumption across every phase of the SDLC by r
 
 ---
 
+## Create a New Project from the Template
+
+Create a new empty repository from this GitHub template with a single command:
+
+```bash
+gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
+cd my-project
+```
+
+This creates a new repository with the template's full configuration (agents, MCP servers, skills, efficiency rules) and no business code. The project starts clean — ready for OpenCode.
+
+Start OpenCode with the startup prompt:
+
+```bash
+opencode --prompt "startup"
+# or with the alias configured during installation:
+oc
+```
+
+OpenCode loads `AGENTS.md`, launches Serena and Context7, and prompts for the first task with token-reducing defaults in place.
+
+---
+
 ## Migrate into an Existing Project
 
 To apply the token-reduce template to an existing project, use the `/migrate` command:
