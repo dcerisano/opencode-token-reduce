@@ -57,9 +57,7 @@ To apply the token-reduce template to an existing project, use the `/migrate` co
 opencode --prompt "/migrate /path/to/your/project"
 ```
 
-The command clones the template, merges config files into your project, commits, and pushes. **Conflicts may arise** if your project already has an `opencode.json`, `.opencode/`, or `.serena/` directory — the command resolves them by preferring your existing business logic while accepting template tooling config. Review the merge commit before pushing if you want manual control.
-
-Requires git push access to the target repository's remote.
+The command copies the template's config files (`opencode.json`, `.opencode/`, `.serena/`) into your project. **If any target file already exists, the command aborts immediately** and shows the full list of conflicting paths so you can resolve them manually. Remove or rename the conflicting files, then run `/migrate` again.
 
 ---
 
