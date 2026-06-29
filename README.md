@@ -156,17 +156,18 @@ To add support for another language, edit `languages:` in `.serena/project.yml` 
 
 ```
 opencode-token-reduce/
-├── opencode.json              # Main config: MCP servers, agents, LSP, permissions
-├── .gitignore
+├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions
 ├── .opencode/
+│   ├── .gitignore                # Ignores node_modules/, package*.json, bun.lock
 │   ├── commands/
 │   │   └── migrate.md            # /migrate — merge template into existing project
 │   └── skills/
 │       └── memory-management/
 │           └── SKILL.md
 ├── .serena/
-    ├── .gitignore             # Ignores /cache, /project.local.yml
-    ├── project.yml            # Serena project config (languages, encoding, ignored paths)
-    └── memories/
-        └── .gitkeep           # Placeholder — keeps the directory tracked
+│   ├── .gitignore                # Ignores /cache, /project.local.yml
+│   ├── project.yml               # Serena project config (languages, encoding, ignored paths)
+│   └── memories/
+│       └── .gitkeep              # Placeholder — keeps the directory tracked
+└── README.md
 ```
