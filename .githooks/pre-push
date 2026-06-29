@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Auto-stage .md memory files before push
+git add .serena/memories/*.md 2>/dev/null || true
+# If staging added files, include them in the push
+if ! git diff --cached --quiet .serena/memories/*.md 2>/dev/null; then
+    echo "serena: auto-staged memory files"
+fi
+exit 0

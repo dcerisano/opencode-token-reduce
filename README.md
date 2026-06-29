@@ -33,6 +33,7 @@ Create a new empty repository from this GitHub template with a single command:
 ```bash
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
+git config core.hooksPath .githooks
 ```
 
 This creates a new repository with the template's full configuration (agents, MCP servers, skills, efficiency rules) and no business code. The project starts clean — ready for OpenCode.
@@ -84,6 +85,7 @@ alias oc='opencode --prompt "startup"'
 # Create a new project from this template
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
+git config core.hooksPath .githooks
 oc
 ```
 
@@ -108,6 +110,7 @@ function oc { opencode --prompt "startup" }
 # Create a new project from this template
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
+git config core.hooksPath .githooks
 oc
 ```
 
@@ -146,6 +149,8 @@ opencode-token-reduce/
 ├── .serena/
 │   ├── .gitignore                # Ignores /cache, /project.local.yml
 │   └── memories/
-│       └── .gitkeep              # Placeholder — keeps the directory tracked
+│       └── .gitkeep              # Auto-stages .md memory files on push (via .githooks/)
+├── .githooks/
+│   └── pre-push                  # Auto-stages .serena/memories/*.md before push
 └── README.md
 ```
