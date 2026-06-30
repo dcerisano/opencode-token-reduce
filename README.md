@@ -50,7 +50,7 @@ To apply the token-reduce template to an existing project, use the `/migrate` co
 opencode --prompt "/migrate /path/to/your/project"
 ```
 
-The command copies the template's config directories (`.opencode/`, `.serena/`) into your project — no root-level `opencode.json` to conflict with the target. **If any target file already exists, the command aborts immediately** and shows the full list of conflicting paths so you can resolve them manually. Remove or rename the conflicting files, then run `/migrate` again.
+The command copies the template's config files (`opencode.json`, `.opencode/`, `.serena/`) into your project. **If any target file already exists, the command aborts immediately** and shows the full list of conflicting paths so you can resolve them manually. Remove or rename the conflicting files, then run `/migrate` again.
 
 ---
 
@@ -104,7 +104,7 @@ cd my-project
 oc
 ```
 
-The Serena and Context7 MCP servers are configured via `config.d` fragments in `.opencode/` and launch automatically on startup. The Serena web dashboard is available at [http://127.0.0.1:24282/dashboard/index.html](http://127.0.0.1:24282/dashboard/index.html) (auto-launch is disabled to avoid unnecessary tray/browser windows).
+The Serena and Context7 MCP servers are configured in the root `opencode.json` and launch automatically on startup. The Serena web dashboard is available at [http://127.0.0.1:24282/dashboard/index.html](http://127.0.0.1:24282/dashboard/index.html) (auto-launch is disabled to avoid unnecessary tray/browser windows).
 
 ---
 
@@ -128,13 +128,9 @@ The Serena and Context7 MCP servers are configured via `config.d` fragments in `
 
 ```
 opencode-token-reduce/
+├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions
 ├── .opencode/
 │   ├── .gitignore                # Ignores node_modules/, package*.json, bun.lock
-│   ├── config.d/
-│   │   ├── 00-base.json          # $schema, instructions, LSP
-│   │   ├── 01-mcp.json           # Serena + Context7 MCP servers
-│   │   ├── 02-agents.json        # Build agent (temp, top_p)
-│   │   └── 03-permissions.json   # Edit/write deny, bash rules
 │   ├── commands/
 │   │   └── migrate.md            # /migrate — merge template into existing project
 │   └── skills/
@@ -146,5 +142,3 @@ opencode-token-reduce/
 │       └── .gitkeep              # Memory file storage
 └── README.md
 ```
-
-Config fragments (`.opencode/config.d/*.json`) are auto-loaded alphabetically and merged by OpenCode — no root-level `opencode.json` required, so the template never conflicts with an existing project's config.
