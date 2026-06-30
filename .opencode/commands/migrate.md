@@ -11,7 +11,8 @@ The subagent receives:
 
 You are migrating the opencode-token-reduce template into the existing target project at `{confirmed_path}`.
 
-1. Copy all files from the current repo's remote source (never copy local repo files) into target project (EXCEPT DO NOT COPY the README.md or .serena/memory/*.md or 
+1. Copy onlt the git-tracked files from the current local repo into target project (EXCEPT DO NOT COPY the README.md or .serena/memory/*.md or 
 .serena/project*.yaml)
 2. Merge (don't just replace) any target files already present in the target project giving the migrating file content predecence in the merge
 3. Abort and report if any merges had conflicts you could not resolve.
+4. Do not track stage commit or push the copied files. just copy and merge them directly do not use git CLI for anything
