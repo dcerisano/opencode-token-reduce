@@ -8,6 +8,8 @@ A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI
 
 Use it as a GitHub template to bootstrap new projects with a pre-configured token-reducing environment. The template is model-agnostic — it works with any LLM backend that OpenCode supports.
 
+The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded automatically by OpenCode on every session. It instructs the AI to be concise, prefer Serena for code analysis, use Context7 for documentation, and run a startup routine (`context7_resolve-library-id`, read all Serena memories) each session.
+
 ## Token Savings
 
 Serena and Context7 reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries.
@@ -50,7 +52,9 @@ To apply the token-reduce template to an existing project, use the `/migrate` co
 opencode --prompt "/migrate /path/to/your/project"
 ```
 
-The command copies the template's config files (`opencode.json`, `.opencode/`, `.serena/`) into your project. **If any target file already exists, the command aborts immediately** and shows the full list of conflicting paths so you can resolve them manually. Remove or rename the conflicting files, then run `/migrate` again.
+The command copies the template's config files (`opencode.json`, `.opencode/`, `.serena/`) into your project, **overwriting any existing files at those paths**. Review your existing config before running migration, especially if you have custom agents, commands, skills, or MCP server definitions.
+
+All configs are project-scoped — they live in your project root and have no effect outside it. Your global OpenCode configuration (`~/.config/opencode/`) is never touched.
 
 ---
 
@@ -112,7 +116,7 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 ### OpenCode
 
-[OpenCode](https://opencode.ai) handles model selection, MCP server orchestration, agent definitions with granular permission scopes, skill loading, and command templates.
+[OpenCode](https://opencode.ai) handles model selection, MCP server orchestration, agent definitions with granular permission scopes, skill loading, and command templates. Session-level AI instructions are loaded from [`AGENTS.md`](./AGENTS.md).
 
 ### Serena
 
@@ -129,8 +133,10 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 ```
 opencode-token-reduce/
 ├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions
+├── AGENTS.md                     # System prompt — AI startup instructions, Serena/Context7 preferences
 ├── .opencode/
 │   ├── .gitignore                # Ignores node_modules/, package*.json, bun.lock
+│   ├── package.json              # Node plugin dependency (@opencode-ai/plugin)
 │   ├── commands/
 │   │   └── migrate.md            # /migrate — merge template into existing project
 │   └── skills/
