@@ -33,18 +33,10 @@ Create a new empty repository from this GitHub template with a single command:
 ```bash
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
-git config core.hooksPath .githooks
+opencode --prompt "startup"
 ```
 
 This creates a new repository with the template's full configuration (agents, MCP servers, skills, efficiency rules) and no business code. The project starts clean — ready for OpenCode.
-
-Start OpenCode with the startup prompt:
-
-```bash
-opencode --prompt "startup"
-# or with the alias configured during installation:
-oc
-```
 
 OpenCode launches Serena and Context7, and prompts for the first task with token-reducing defaults in place.
 
@@ -58,7 +50,7 @@ To apply the token-reduce template to an existing project, use the `/migrate` co
 opencode --prompt "/migrate /path/to/your/project"
 ```
 
-The command copies the template's config files (`opencode.json`, `.opencode/`, `.serena/`) into your project. **If any target file already exists, the command aborts immediately** and shows the full list of conflicting paths so you can resolve them manually. Remove or rename the conflicting files, then run `/migrate` again.
+The command copies the template's config directories (`.opencode/`, `.serena/`) into your project — no root-level `opencode.json` to conflict with the target. **If any target file already exists, the command aborts immediately** and shows the full list of conflicting paths so you can resolve them manually. Remove or rename the conflicting files, then run `/migrate` again.
 
 ---
 
@@ -85,7 +77,6 @@ alias oc='opencode --prompt "startup"'
 # Create a new project from this template
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
-git config core.hooksPath .githooks
 oc
 ```
 
@@ -110,11 +101,10 @@ function oc { opencode --prompt "startup" }
 # Create a new project from this template
 gh repo create my-project --template dcerisano/opencode-token-reduce --public --clone
 cd my-project
-git config core.hooksPath .githooks
 oc
 ```
 
-The Serena and Context7 MCP servers are configured in `opencode.json` and launch automatically on startup. The Serena web dashboard is available at [http://127.0.0.1:24282/dashboard/index.html](http://127.0.0.1:24282/dashboard/index.html) (auto-launch is disabled to avoid unnecessary tray/browser windows).
+The Serena and Context7 MCP servers are configured via `config.d` fragments in `.opencode/` and launch automatically on startup. The Serena web dashboard is available at [http://127.0.0.1:24282/dashboard/index.html](http://127.0.0.1:24282/dashboard/index.html) (auto-launch is disabled to avoid unnecessary tray/browser windows).
 
 ---
 
@@ -138,9 +128,13 @@ The Serena and Context7 MCP servers are configured in `opencode.json` and launch
 
 ```
 opencode-token-reduce/
-├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions
 ├── .opencode/
 │   ├── .gitignore                # Ignores node_modules/, package*.json, bun.lock
+│   ├── config.d/
+│   │   ├── 00-base.json          # $schema, instructions, LSP
+│   │   ├── 01-mcp.json           # Serena + Context7 MCP servers
+│   │   ├── 02-agents.json        # Build agent (temp, top_p)
+│   │   └── 03-permissions.json   # Edit/write deny, bash rules
 │   ├── commands/
 │   │   └── migrate.md            # /migrate — merge template into existing project
 │   └── skills/
@@ -149,8 +143,8 @@ opencode-token-reduce/
 ├── .serena/
 │   ├── .gitignore                # Ignores /cache, /project.local.yml
 │   └── memories/
-│       └── .gitkeep              # Auto-stages .md memory files on push (via .githooks/)
-├── .githooks/
-│   └── pre-push                  # Auto-stages .serena/memories/*.md before push
+│       └── .gitkeep              # Memory file storage
 └── README.md
 ```
+
+Config fragments (`.opencode/config.d/*.json`) are auto-loaded alphabetically and merged by OpenCode — no root-level `opencode.json` required, so the template never conflicts with an existing project's config.
