@@ -1,4 +1,12 @@
 {
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [],
+  "agent": {
+    "build": {
+      "temperature": 0.2,
+      "top_p": 0.8
+    }
+  },
   "mcp": {
     "serena": {
       "type": "local",
@@ -12,7 +20,7 @@
         "start-mcp-server",
         "--context=ide",
         "--project-from-cwd",
-        "--open-web-dashboard=False"
+        "--open-web-dashboard=False",
       ],
       "enabled": true
     },
@@ -24,5 +32,15 @@
       },
       "enabled": true
     }
-  }
+  },
+  "permission": {
+    "edit": "deny",
+    "write": "deny",
+    "bash": {
+      "git commit*": "ask",
+      "git push*": "ask",
+      "*": "allow"
+    }
+  },
+  "lsp": true
 }
