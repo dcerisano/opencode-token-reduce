@@ -34,8 +34,8 @@
     }
   },
   "permission": {
-    "edit": "deny",
-    "write": "deny",
+    "edit": "allow",
+    "write": "allow",
     "bash": {
       "git commit*": "ask",
       "git push*": "ask",
