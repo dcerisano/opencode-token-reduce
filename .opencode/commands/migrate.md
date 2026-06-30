@@ -14,4 +14,3 @@ You are migrating the opencode-token-reduce template into the existing target pr
 1. Copy all files from the current remote template repo into target project (EXCEPT DO NOT COPY the README.md or .serena/memory/*.md or .serena/project*.yaml)
 2. Merge (don't just replace) any target files already present in the target project giving the migrating file content predecence in the merge
 3. Abort and report if any merges had conflicts you could not resolve.
-4. After all files are copied/merged, stage only the template files in the target repo — not everything in the target. Run `git -C "{confirmed_path}" add` on each copied file/directory individually (or compute the file list from the template repo excluding the exceptions and add those paths). Do NOT commit or push.
