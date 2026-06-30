@@ -5,9 +5,11 @@ agent: build
 
 Check if a target directory path was already provided as an argument in the user's message (e.g. `/migrate /some/path`). If so, use that path directly. Otherwise, ask the user for a target directory path using the `question` tool.
 
+**NEVER accept a blank or empty path.** The path MUST be non-empty after trimming whitespace. If the user provides a blank/empty path (or you get an empty response from the `question` tool), reject it immediately with an error message and keep asking until a valid non-empty path is given.
+
 In either case, validate the path exists as a directory using `bash` with `test -d "$path"`. Keep asking (or reject the provided arg) until a valid existing directory is confirmed.
 
-Also validate the target is a git repository by checking that `"$path/.git"` exists as a directory using `bash` with `test -d "$path/.git"`. Reject with an error message if it is not a git repo.
+Also validate the target is a **separate** git repository by checking that `"$path/.git"` exists as a directory using `bash` with `test -d "$path/.git"`. **Reject with an error message "Target must be a separate git repository (no .git directory found)." if it is not a git repo.** Do NOT proceed with the migration if the target is not a git repository.
 
 Once confirmed, delegate the full workflow to a `task` subagent (type `general`) so output is collapsed. Pass the confirmed path as the target.
 
