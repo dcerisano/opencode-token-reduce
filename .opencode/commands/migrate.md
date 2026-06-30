@@ -5,22 +5,11 @@ agent: build
 
 Ask the user for a target directory path using the `question` tool. Keep asking until the user provides a path that:
 1. Exists as a directory (`bash` with `test -d "$path"`)
-2. Is a git repository (`bash` with `git -C "$path" rev-parse --git-dir`)
-
-Once a valid path is confirmed, enumerate ALL files the template would copy (excluding README.md, memory.md files, cache/, node_modules/, package-lock.json, package.json). For each, check with `bash test -f "$target/$f"` whether that file already exists in the target. Collect every conflicting path. If ANY conflicts exist, display the full list to the user and abort. Do NOT proceed.
 
 Delegate the full workflow to a `task` subagent (type `general`) so output is collapsed. Pass the confirmed path as the target.
 
 The subagent receives:
 
-You are migrating the opencode-token-reduce template into the existing project at `{confirmed_path}`.
+You are migrating the opencode-token-reduce template into the existing target project at `{confirmed_path}`.
 
-1. Copy these files from the current repo into target (do NOT copy README.md or any `memory.md` files):
-2. Merge into target:
-   - `opencode.json`
-   - `.opencode/` (merge — keep existing commands/skills/plugins)
-   - `.serena/` (merge — keep existing memories/config)
-3. Show the user a summary of what changed (files added, modified, conflicted).
-4. Stage all changes. Inform the user the changes are staged and ready for review/testing. Do NOT commit or push — the user will handle that manually.
-5. On merge conflicts: prefer target's code for business logic, template's files for tooling.
-6. Instruct user to quit/restart OpenCode.
+1. Copy all files from the current remote template repo into target project (except DO NOT copy the README.md):
