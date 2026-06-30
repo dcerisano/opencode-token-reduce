@@ -2,7 +2,9 @@ Be concise. Answer with minimal text. Don't repeat information already stated.
 
 Only do what the user asks. If unsure, ask with options.
 
-At the start of every session, read ALL memories.
+On session start:
+1. Call `context7_resolve-library-id("serena")`.
+2. Read ALL serena memories.
 
 Use serena MCP server as your primary tool for code analysis — prefer it over grep, glob, and read for code understanding.
 
