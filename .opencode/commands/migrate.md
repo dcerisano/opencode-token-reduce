@@ -5,15 +5,13 @@ agent: build
 
 Extract the path from the prompt (the argument after `/migrate`) and expand `~`. If the path is non-blank and `test -d "$path/.git"` succeeds, skip asking and proceed. Otherwise, ask the user for the target path using the `question` tool. Keep asking until a non-blank path pointing to a separate git repo is confirmed.
 
-Once a valid path is obtained, copy only the remote template repo's files:
+Once confirmed, delegate the full workflow to a `task` subagent (type `general`). Pass the confirmed path as the target.
 
-```
-TEMPLATE_DIR="$(git rev-parse --show-toplevel)"
-git -C "$TEMPLATE_DIR" ls-files \
-  | grep -vE '(^README.md$|\.serena/project.*\.yaml$|\.serena/memories/.*\.md$)' \
-  | rsync -aR --files-from=- "$TEMPLATE_DIR/" "$confirmed_path/"
-```
+The subagent receives:
 
-Only files from the remote template repo are ever copied. Do not delegate to a subagent — run the rsync directly.
+You are migrating the opencode-token-reduce template into the existing target project at `{confirmed_path}`.
 
-Report the list of copied/changed files based on the rsync output.
+1. Copy all files from the current repo's remote source (never copy local repo files) into target project (EXCEPT DO NOT COPY the README.md or .serena/memory/*.md or 
+.serena/project*.yaml)
+2. Merge (don't just replace) any target files already present in the target project giving the migrating file content predecence in the merge
+3. Abort and report if any merges had conflicts you could not resolve.
