@@ -10,9 +10,9 @@ Use it as a GitHub template to bootstrap new projects with a pre-configured toke
 
 The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded automatically by OpenCode on every session. It instructs the AI to be concise, prefer Serena for code analysis, use Context7 for documentation, and run a startup routine (`context7_resolve-library-id`, read all Serena memories) each session.
 
-## Token Savings
+## Token Reduction
 
-Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated.
+Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated. Reduction per SDLC task is cumulative — each phase compounds the reduction by passing less bloat to the next.
 
 | SDLC Task | Without | Serena | Context7 | DCP |
 |:---:|:---:|:---:|:---:|:---:|
@@ -24,7 +24,9 @@ Serena and Context7 reduce token consumption proactively — they prevent contex
 | **Library/Tool Setup** | Read setup guide manually | | `query-docs`<br>(65-85%) | Compress<br>(5-10%) |
 | **Refactoring** | Manual rename across files | `rename_symbol`<br>(75-85%) | | Compress<br>(7-15%) |
 
-**Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest gains in early phases (comprehension, research) and refactoring.
+**Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest reductions in early phases (comprehension, research) and refactoring.
+
+For fixed model, hardware, batching, and sequence length, energy per token is approximately constant — fewer tokens directly means less electricity.
 
 DCP acts as a reactive complementary layer — it prunes conversation context via compression nudges, deduplication, and error pruning, cleaning up token waste that has already accumulated across multi-turn sessions. Together, the three tools form a complete token-reduction pipeline: Serena and Context7 prevent bloat a priori for code and docs, while DCP reactively cleans up conversation state.
 
