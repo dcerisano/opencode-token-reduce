@@ -15,16 +15,16 @@ The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded auto
 Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated.
 
 | SDLC Phase | Without | Serena | Context7 | DCP |
-|---|---|---|---|---|
-| **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` (60-80%) | — | Compress + dedup (5-10%) |
-| **Documentation Research** | Read full docs or use stale training data | — | `context7_query-docs` (70-90%) | Compress (5-10%) |
-| **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` (40-60%) | — | Compress + dedup (10-20%) |
-| **Search & Debugging** | grep/glob across codebase, read to understand | `find_referencing_symbols` / `find_implementations` (50-70%) | — | Compress + error pruning (10-20%) |
-| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` (60-80%) | — | Compress (5-10%) |
-| **Library/Tool Setup** | Read setup guide, guess config | — | `context7_query-docs` (70-90%) | Compress (5-10%) |
-| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` (80-90%) | — | Compress (10-20%) |
+|---|---|---|---|---|---|
+| **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` (55-75%) | — | Compress + dedup (5-10%) |
+| **Documentation Research** | Read full docs or use stale training data | — | `context7_query-docs` (65-85%) | Compress (5-10%) |
+| **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` (40-55%) | — | Compress + dedup (7-15%) |
+| **Search & Debugging** | grep/glob across codebase, read to understand | `find_referencing_symbols` / `find_implementations` (45-65%) | — | Compress + error pruning (7-15%) |
+| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` (55-75%) | — | Compress (5-10%) |
+| **Library/Tool Setup** | Read setup guide, guess config | — | `context7_query-docs` (65-85%) | Compress (5-10%) |
+| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` (75-85%) | — | Compress (7-15%) |
 
-**Overall projection:** 50-70% fewer tokens consumed over the lifespan of a professional-grade project, with the largest gains in early phases (comprehension, research) and refactoring.
+**Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest gains in early phases (comprehension, research) and refactoring.
 
 DCP acts as a reactive complementary layer — it prunes conversation context via compression nudges, deduplication, and error pruning, cleaning up token waste that has already accumulated across multi-turn sessions. Together, the three tools form a complete token-reduction pipeline: Serena and Context7 prevent bloat a priori for code and docs, while DCP reactively cleans up conversation state.
 

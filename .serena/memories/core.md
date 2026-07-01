@@ -1,6 +1,6 @@
 # opencode-token-reduce
 
-Drop-in OpenCode configuration template that reduces AI token usage by pairing Serena (semantic code analysis), Context7 (live docs), and DCP (context pruning) under strict efficiency rules.
+Drop-in OpenCode configuration template that reduces AI token usage by pairing Serena (semantic code analysis), Context7 (live docs), and DCP (context pruning) under strict efficiency rules. Serena and Context7 are proactive — they prevent context bloat a priori. DCP is purely reactive — it only prunes bloat after tokens have already been spent. Overall net projection: 50-85% fewer tokens.
 
 ## Structure
 
