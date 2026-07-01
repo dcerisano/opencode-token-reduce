@@ -2,20 +2,13 @@
   "$schema": "https://opencode.ai/config.json",
   "instructions": [],
   "compaction": {
-    "auto": true,
-    "reserved": 50000
+    "auto": false
   },
   "plugin": ["@tarquinen/opencode-dcp"],
   "command": {
     "dcp": {
       "template": "",
       "description": "DCP panel: context, stats, sweep, manual mode"
-    }
-  },
-  "agent": {
-    "build": {
-      "temperature": 0.2,
-      "top_p": 0.8
     }
   },
   "mcp": {
@@ -45,12 +38,11 @@
     }
   },
   "permission": {
-    "edit": "allow",
-    "write": "allow",
+    "edit": "ask",
+    "grep": "deny",
     "bash": {
-      "git commit*": "ask",
-      "git push*": "ask",
-      "*": "allow"
+      "git commit": "ask",
+      "git push": "ask"
     }
   },
   "experimental": {
