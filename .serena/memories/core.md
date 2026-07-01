@@ -1,6 +1,6 @@
 # opencode-token-reduce
 
-Drop-in OpenCode configuration template that reduces AI token usage by pairing Serena (semantic code analysis) with Context7 (live docs) under strict efficiency rules.
+Drop-in OpenCode configuration template that reduces AI token usage by pairing Serena (semantic code analysis), Context7 (live docs), and DCP (context pruning) under strict efficiency rules.
 
 ## Structure
 
@@ -22,22 +22,9 @@ Drop-in OpenCode configuration template that reduces AI token usage by pairing S
 - Serena dashboard auto-launch disabled to avoid tray/browser windows.
 - Uses `.opencode/` and `.serena/` gitignore patterns to exclude `node_modules/`, `package*.json`, `bun.lock`, and `/cache`.
 
-- **No business code** — this is a config-only template. All `.opencode/` and `.serena/` files are structural configs.
-- **Model-agnostic** — works with any LLM backend OpenCode supports.
-- **Permissions** — edit/write allowed, bash allowed except git commit/push (ask-first). See `opencode.json`.
-- **MCP servers** — Serena (local, via `uvx`), Context7 (remote).
-- Language servers are **not configured** (`languages: []` in `project.yml`) — LSP is still enabled at OpenCode level.
-- Serena dashboard auto-launch disabled to avoid tray/browser windows.
-- Uses `.opencode/` and `.serena/` gitignore patterns to exclude `node_modules/`, `package*.json`, `bun.lock`, and `/cache`.
-
 ## Related memories
 
 - `mem:dcp_config` — DCP plugin configuration rationale (limits, nudge force, protected tools)
-- `mem:tech_stack` — tooling dependencies
-- `mem:suggested_commands` — common commands
-- `mem:conventions` — code/style conventions
-- `mem:task_completion` — verification steps
-
 - `mem:tech_stack` — tooling dependencies
 - `mem:suggested_commands` — common commands
 - `mem:conventions` — code/style conventions
