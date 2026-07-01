@@ -14,15 +14,64 @@ The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded auto
 
 Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated.
 
-| SDLC Phase | Without | Serena | Context7 | DCP |
-|:---|:---|---:|:---:|---:|
-| **Code Comprehension** | File grep for symbols | `find_symbol`<br>(55-75%) | — | Dedup + compress<br>(5-10%) |
-| **Documentation Research** | Read docs or stale training | — | `query-docs`<br>(65-85%) | Compress<br>(5-10%) |
-| **Code Editing** | Rewrite full files manually | `replace_symbol_body`<br>(40-55%) | — | Dedup + compress<br>(7-15%) |
-| **Search & Debugging** | Grep codebase + manual read | `find_implementations`<br>(45-65%) | — | Error pruning + compress<br>(7-15%) |
-| **Diagnostics** | Log grep + manual bisect | `get_diagnostics_for_file`<br>(55-75%) | — | Compress<br>(5-10%) |
-| **Library/Tool Setup** | Read setup guide manually | — | `query-docs`<br>(65-85%) | Compress<br>(5-10%) |
-| **Refactoring** | Manual rename across files | `rename_symbol`<br>(75-85%) | — | Compress<br>(7-15%) |
+<table>
+<tr>
+  <th align="left">SDLC Phase</th>
+  <th align="left">Without</th>
+  <th align="right">Serena</th>
+  <th align="center">Context7</th>
+  <th align="right">DCP</th>
+</tr>
+<tr valign="bottom">
+  <td><strong>Code Comprehension</strong></td>
+  <td>File grep for symbols</td>
+  <td align="right"><code>find_symbol</code><br>(55-75%)</td>
+  <td align="center">—</td>
+  <td align="right">Dedup + compress<br>(5-10%)</td>
+</tr>
+<tr valign="bottom">
+  <td><strong>Documentation Research</strong></td>
+  <td>Read docs or stale training</td>
+  <td align="right">—</td>
+  <td align="center"><code>query-docs</code><br>(65-85%)</td>
+  <td align="right">Compress<br>(5-10%)</td>
+</tr>
+<tr valign="bottom">
+  <td><strong>Code Editing</strong></td>
+  <td>Rewrite full files manually</td>
+  <td align="right"><code>replace_symbol_body</code><br>(40-55%)</td>
+  <td align="center">—</td>
+  <td align="right">Dedup + compress<br>(7-15%)</td>
+</tr>
+<tr valign="bottom">
+  <td><strong>Search & Debugging</strong></td>
+  <td>Grep codebase + manual read</td>
+  <td align="right"><code>find_implementations</code><br>(45-65%)</td>
+  <td align="center">—</td>
+  <td align="right">Error pruning + compress<br>(7-15%)</td>
+</tr>
+<tr valign="bottom">
+  <td><strong>Diagnostics</strong></td>
+  <td>Log grep + manual bisect</td>
+  <td align="right"><code>get_diagnostics_for_file</code><br>(55-75%)</td>
+  <td align="center">—</td>
+  <td align="right">Compress<br>(5-10%)</td>
+</tr>
+<tr valign="bottom">
+  <td><strong>Library/Tool Setup</strong></td>
+  <td>Read setup guide manually</td>
+  <td align="right">—</td>
+  <td align="center"><code>query-docs</code><br>(65-85%)</td>
+  <td align="right">Compress<br>(5-10%)</td>
+</tr>
+<tr valign="bottom">
+  <td><strong>Refactoring</strong></td>
+  <td>Manual rename across files</td>
+  <td align="right"><code>rename_symbol</code><br>(75-85%)</td>
+  <td align="center">—</td>
+  <td align="right">Compress<br>(7-15%)</td>
+</tr>
+</table>
 
 **Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest gains in early phases (comprehension, research) and refactoring.
 
