@@ -23,50 +23,50 @@ Serena and Context7 reduce token consumption proactively — they prevent contex
   <th align="center">DCP</th>
 </tr>
 <tr valign="bottom">
-  <td><strong>Code Comprehension</strong></td>
-  <td>File grep for symbols</td>
+  <td valign="top"><strong>Code Comprehension</strong></td>
+  <td valign="top">File grep for symbols</td>
   <td align="right"><code>find_symbol</code><br>(55-75%)</td>
   <td align="right"></td>
   <td align="right">Dedup + compress<br>(5-10%)</td>
 </tr>
 <tr valign="bottom">
-  <td><strong>Documentation Research</strong></td>
-  <td>Read docs or stale training</td>
+  <td valign="top"><strong>Documentation Research</strong></td>
+  <td valign="top">Read docs or stale training</td>
   <td align="right"></td>
   <td align="right"><code>query-docs</code><br>(65-85%)</td>
   <td align="right">Compress<br>(5-10%)</td>
 </tr>
 <tr valign="bottom">
-  <td><strong>Code Editing</strong></td>
-  <td>Rewrite full files manually</td>
+  <td valign="top"><strong>Code Editing</strong></td>
+  <td valign="top">Rewrite full files manually</td>
   <td align="right"><code>replace_symbol_body</code><br>(40-55%)</td>
   <td align="right"></td>
   <td align="right">Dedup + compress<br>(7-15%)</td>
 </tr>
 <tr valign="bottom">
-  <td><strong>Search & Debugging</strong></td>
-  <td>Grep codebase + manual read</td>
+  <td valign="top"><strong>Search & Debugging</strong></td>
+  <td valign="top">Grep codebase + manual read</td>
   <td align="right"><code>find_implementations</code><br>(45-65%)</td>
   <td align="right"></td>
   <td align="right">Error pruning + compress<br>(7-15%)</td>
 </tr>
 <tr valign="bottom">
-  <td><strong>Diagnostics</strong></td>
-  <td>Log grep + manual bisect</td>
+  <td valign="top"><strong>Diagnostics</strong></td>
+  <td valign="top">Log grep + manual bisect</td>
   <td align="right"><code>get_diagnostics_for_file</code><br>(55-75%)</td>
   <td align="right"></td>
   <td align="right">Compress<br>(5-10%)</td>
 </tr>
 <tr valign="bottom">
-  <td><strong>Library/Tool Setup</strong></td>
-  <td>Read setup guide manually</td>
+  <td valign="top"><strong>Library/Tool Setup</strong></td>
+  <td valign="top">Read setup guide manually</td>
   <td align="right"></td>
   <td align="right"><code>query-docs</code><br>(65-85%)</td>
   <td align="right">Compress<br>(5-10%)</td>
 </tr>
 <tr valign="bottom">
-  <td><strong>Refactoring</strong></td>
-  <td>Manual rename across files</td>
+  <td valign="top"><strong>Refactoring</strong></td>
+  <td valign="top">Manual rename across files</td>
   <td align="right"><code>rename_symbol</code><br>(75-85%)</td>
   <td align="right"></td>
   <td align="right">Compress<br>(7-15%)</td>
