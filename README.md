@@ -79,6 +79,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Context7 API key (get one at https://context7.com)
 export CONTEXT7_API_KEY="your_key_here"
 
+#DCP
+opencode plugin @tarquinen/opencode-dcp@latest --global
+
 # Quick startup alias
 alias oc='opencode --prompt "startup"'
 
@@ -102,6 +105,9 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 # Context7 API key (get one at https://context7.com)
 $env:CONTEXT7_API_KEY = "your_key_here"
+
+# DCP
+opencode plugin @tarquinen/opencode-dcp@latest --global
 
 # Quick startup alias
 function oc { opencode --prompt "startup" }
