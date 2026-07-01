@@ -11,6 +11,20 @@
       "description": "DCP panel: context, stats, sweep, manual mode"
     }
   },
+  "agent": {
+    "plan": {
+      "temperature": 0.0,
+      "top_p": 0.9
+    },
+    "build": {
+      "temperature": 0.1,
+      "top_p": 0.9
+    },
+    "explore": {
+      "temperature": 0.0,
+      "top_p": 0.9
+    }
+  },
   "mcp": {
     "serena": {
       "type": "local",
@@ -41,7 +55,6 @@
     "edit": "ask",
     "grep": "deny",
     "bash": {
-      "git commit": "ask",
       "git push": "ask"
     }
   },
