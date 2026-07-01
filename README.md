@@ -16,11 +16,11 @@ Serena and Context7 reduce token consumption proactively — they prevent contex
 
 <table>
 <tr>
-  <th align="center">SDLC Phase</th>
-  <th align="center">Without</th>
-  <th align="center">Serena</th>
-  <th align="center">Context7</th>
-  <th align="center">DCP</th>
+  <th align="center" nowrap><big>SDLC Phase</big></th>
+  <th align="center" nowrap><big>Without</big></th>
+  <th align="center" nowrap><big>Serena</big></th>
+  <th align="center" nowrap><big>Context7</big></th>
+  <th align="center" nowrap><big>DCP</big></th>
 </tr>
 <tr valign="middle">
   <td align="center" valign="middle"><strong>Code Comprehension</strong></td>
