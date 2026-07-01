@@ -6,6 +6,12 @@
     "reserved": 50000
   },
   "plugin": ["@tarquinen/opencode-dcp"],
+  "command": {
+    "dcp": {
+      "template": "",
+      "description": "DCP panel: context, stats, sweep, manual mode"
+    }
+  },
   "agent": {
     "build": {
       "temperature": 0.2,
@@ -50,5 +56,6 @@
   "experimental": {
     "primary_tools": ["compress"]
   },
+  "default_agent": "plan",
   "lsp": true
 }
