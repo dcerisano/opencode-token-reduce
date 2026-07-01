@@ -16,13 +16,13 @@ Serena and Context7 reduce token consumption proactively — they prevent contex
 
 | SDLC Phase | Without | Serena | Context7 | DCP |
 |:---|:---|---:|:---:|---:|
-| **Code Comprehension** | File grep for symbols | `find_symbol` (55-75%) | — | Dedup + compress (5-10%) |
-| **Documentation Research** | Read docs or stale training | — | `query-docs` (65-85%) | Compress (5-10%) |
-| **Code Editing** | Rewrite full files manually | `replace_symbol_body` (40-55%) | — | Dedup + compress (7-15%) |
-| **Search & Debugging** | Grep codebase + manual read | `find_implementations` (45-65%) | — | Error pruning + compress (7-15%) |
-| **Diagnostics** | Log grep + manual bisect | `get_diagnostics_for_file` (55-75%) | — | Compress (5-10%) |
-| **Library/Tool Setup** | Read setup guide manually | — | `query-docs` (65-85%) | Compress (5-10%) |
-| **Refactoring** | Manual rename across files | `rename_symbol` (75-85%) | — | Compress (7-15%) |
+| **Code Comprehension** | File grep for symbols | `find_symbol`<br>(55-75%) | — | Dedup + compress<br>(5-10%) |
+| **Documentation Research** | Read docs or stale training | — | `query-docs`<br>(65-85%) | Compress<br>(5-10%) |
+| **Code Editing** | Rewrite full files manually | `replace_symbol_body`<br>(40-55%) | — | Dedup + compress<br>(7-15%) |
+| **Search & Debugging** | Grep codebase + manual read | `find_implementations`<br>(45-65%) | — | Error pruning + compress<br>(7-15%) |
+| **Diagnostics** | Log grep + manual bisect | `get_diagnostics_for_file`<br>(55-75%) | — | Compress<br>(5-10%) |
+| **Library/Tool Setup** | Read setup guide manually | — | `query-docs`<br>(65-85%) | Compress<br>(5-10%) |
+| **Refactoring** | Manual rename across files | `rename_symbol`<br>(75-85%) | — | Compress<br>(7-15%) |
 
 **Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest gains in early phases (comprehension, research) and refactoring.
 
