@@ -22,51 +22,51 @@ Serena and Context7 reduce token consumption proactively — they prevent contex
   <th align="center">Context7</th>
   <th align="center">DCP</th>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Code Comprehension</strong></td>
-  <td align="center" valign="top">File grep for symbols</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Code Comprehension</strong></td>
+  <td align="center" valign="middle">File grep for symbols</td>
   <td align="center"><code>find_symbol</code><br>(55-75%)</td>
   <td align="center"></td>
   <td align="center">Dedup + compress<br>(5-10%)</td>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Documentation Research</strong></td>
-  <td align="center" valign="top">Read docs or stale training</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Documentation Research</strong></td>
+  <td align="center" valign="middle">Read docs or stale training</td>
   <td align="center"></td>
   <td align="center"><code>query-docs</code><br>(65-85%)</td>
   <td align="center">Compress<br>(5-10%)</td>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Code Editing</strong></td>
-  <td align="center" valign="top">Rewrite full files manually</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Code Editing</strong></td>
+  <td align="center" valign="middle">Rewrite full files manually</td>
   <td align="center"><code>replace_symbol_body</code><br>(40-55%)</td>
   <td align="center"></td>
   <td align="center">Dedup + compress<br>(7-15%)</td>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Search & Debugging</strong></td>
-  <td align="center" valign="top">Grep codebase + manual read</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Search & Debugging</strong></td>
+  <td align="center" valign="middle">Grep codebase + manual read</td>
   <td align="center"><code>find_implementations</code><br>(45-65%)</td>
   <td align="center"></td>
   <td align="center">Error pruning + compress<br>(7-15%)</td>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Diagnostics</strong></td>
-  <td align="center" valign="top">Log grep + manual bisect</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Diagnostics</strong></td>
+  <td align="center" valign="middle">Log grep + manual bisect</td>
   <td align="center"><code>get_diagnostics_for_file</code><br>(55-75%)</td>
   <td align="center"></td>
   <td align="center">Compress<br>(5-10%)</td>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Library/Tool Setup</strong></td>
-  <td align="center" valign="top">Read setup guide manually</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Library/Tool Setup</strong></td>
+  <td align="center" valign="middle">Read setup guide manually</td>
   <td align="center"></td>
   <td align="center"><code>query-docs</code><br>(65-85%)</td>
   <td align="center">Compress<br>(5-10%)</td>
 </tr>
-<tr valign="bottom">
-  <td align="center" valign="top"><strong>Refactoring</strong></td>
-  <td align="center" valign="top">Manual rename across files</td>
+<tr valign="middle">
+  <td align="center" valign="middle"><strong>Refactoring</strong></td>
+  <td align="center" valign="middle">Manual rename across files</td>
   <td align="center"><code>rename_symbol</code><br>(75-85%)</td>
   <td align="center"></td>
   <td align="center">Compress<br>(7-15%)</td>
