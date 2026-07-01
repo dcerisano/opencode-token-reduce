@@ -15,7 +15,7 @@ The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded auto
 Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated.
 
 | SDLC Phase | Without | Serena | Context7 | DCP |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` (55-75%) | — | Compress + dedup (5-10%) |
 | **Documentation Research** | Read full docs or use stale training data | — | `context7_query-docs` (65-85%) | Compress (5-10%) |
 | **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` (40-55%) | — | Compress + dedup (7-15%) |
