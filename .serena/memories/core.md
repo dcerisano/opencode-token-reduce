@@ -14,7 +14,7 @@ Drop-in OpenCode configuration template that reduces AI token usage by pairing S
 
 - **No business code** — this is a config-only template. All `.opencode/` and `.serena/` files are structural configs.
 - **Model-agnostic** — works with any LLM backend OpenCode supports. DCP limits use `"X%"` to auto-scale.
-- **Compaction** configured with `reserved: 50000` (5% of 1M window) for proper headroom.
+- **Compaction** configured with `reserved` set for proper headroom before auto-trigger.
 - **DCP compress** listed as a primary tool for higher model priority.
 - **Permissions** — edit/write allowed, bash allowed except git commit/push (ask-first). See `opencode.json`.
 - **MCP servers** — Serena (local, via `uvx`), Context7 (remote).

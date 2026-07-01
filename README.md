@@ -12,7 +12,7 @@ The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded auto
 
 ## Token Savings
 
-Serena, Context7, and DCP reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries and proactive context management.
+Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated.
 
 | SDLC Phase | Without | Serena | Context7 | DCP |
 |---|---|---|---|---|
@@ -26,7 +26,7 @@ Serena, Context7, and DCP reduce token consumption across every phase of the SDL
 
 **Overall projection:** 50-70% fewer tokens consumed over the lifespan of a professional-grade project, with the largest gains in early phases (comprehension, research) and refactoring.
 
-DCP acts as a complementary layer — it proactively manages conversation context via compression nudges, deduplication, and error pruning, reducing token waste that accumulates across multi-turn sessions. Together, the three tools form a complete token-reduction pipeline: Serena for code, Context7 for docs, DCP for conversation state.
+DCP acts as a reactive complementary layer — it prunes conversation context via compression nudges, deduplication, and error pruning, cleaning up token waste that has already accumulated across multi-turn sessions. Together, the three tools form a complete token-reduction pipeline: Serena and Context7 prevent bloat a priori for code and docs, while DCP reactively cleans up conversation state.
 
 ---
 
@@ -122,15 +122,15 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 ### Serena
 
-[Serena](https://oraios.github.io/serena/) replaces native read/write/grep/glob with semantic operations — symbol search, targeted body replacement, diagnostics retrieval, and batch reads — reducing context per tool call.
+[Serena](https://oraios.github.io/serena/) proactively prevents context bloat by replacing native read/write/grep/glob with semantic operations — symbol search, targeted body replacement, diagnostics retrieval, and batch reads — avoiding full-file reads and reducing context per tool call.
 
 ### Context7
 
-[Context7](https://context7.com) resolves library names to IDs and returns up-to-date API references and code examples, eliminating reliance on stale training data.
+[Context7](https://context7.com) proactively prevents context bloat by resolving library names to IDs and returning targeted API references and code examples — avoiding full documentation reads and eliminating reliance on stale training data.
 
 ### DCP (Dynamic Context Pruning)
 
-[`@tarquinen/opencode-dcp`](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning) is an OpenCode plugin that provides proactive context management: compression nudge reminders at configurable context thresholds, message deduplication, error pruning, and turn protection. Configured in `.opencode/dcp.jsonc` with percentage-based limits that auto-scale per model.
+[`@tarquinen/opencode-dcp`](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning) is an OpenCode plugin that provides reactive context management: compression nudge reminders at configurable context thresholds, message deduplication, error pruning, and turn protection. Configured in `.opencode/dcp.jsonc` with percentage-based limits that auto-scale per model.
 
 ---
 

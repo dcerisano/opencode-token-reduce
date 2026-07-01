@@ -5,10 +5,10 @@
 
 ## Limits (percentage-based)
 
-- `maxContextLimit: "70%"` — trigger compression nudges at 70% of model window
-- `minContextLimit: "30%"` — start reminders at 30%
-- Percentage strings (`"X%"`) auto-scale per model. Template targets 1M-window models.
-- OpenCode's built-in `compaction` auto-triggers near 100% — DCP is proactive before that.
+- `maxContextLimit` — trigger compression nudges at configured percentage of model window
+- `minContextLimit` — start reminders at configured percentage
+- Percentage strings (`"X%"`) auto-scale per model; any percentage can be configured.
+- OpenCode's built-in `compaction` auto-triggers near 100% of the model window. DCP reacts to accumulated token bloat at the configured threshold — it cleans up waste that has already burned tokens; unlike Serena/Context7 which prevent bloat a priori.
 
 ## Nudge strategy
 
@@ -27,9 +27,8 @@
 
 - Configured in `opencode.json`, NOT in DCP config
 - `auto: true` — auto-triggers when context is nearly full (model window - reserved)
-- `reserved: 50000` — 50k token buffer before compaction fires (~95% of 1M window)
-- Default would be 10k (too tight for 1M models)
-- Compaction is last-resort; DCP compression is the proactive layer
+- `reserved` — configurable token buffer before compaction fires (auto-scales with model window)
+- Compaction is last-resort. DCP compression is also purely reactive — it only prunes bloat after tokens have already been spent
 
 ## Primary tools
 
