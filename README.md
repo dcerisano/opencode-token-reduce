@@ -15,14 +15,14 @@ The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded auto
 Serena and Context7 reduce token consumption proactively — they prevent context bloat a priori by replacing expensive, full-file operations with targeted, semantic queries. DCP complements this reactively, pruning bloat that has already accumulated.
 
 | SDLC Phase | Without | Serena | Context7 | DCP |
-|---|---|---|---|---|
-| **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` (55-75%) | — | Compress + dedup (5-10%) |
-| **Documentation Research** | Read full docs or use stale training data | — | `context7_query-docs` (65-85%) | Compress (5-10%) |
-| **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` (40-55%) | — | Compress + dedup (7-15%) |
-| **Search & Debugging** | grep/glob across codebase, read to understand | `find_referencing_symbols` / `find_implementations` (45-65%) | — | Compress + error pruning (7-15%) |
-| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` (55-75%) | — | Compress (5-10%) |
-| **Library/Tool Setup** | Read setup guide, guess config | — | `context7_query-docs` (65-85%) | Compress (5-10%) |
-| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` (75-85%) | — | Compress (7-15%) |
+|:---|:---|---:|:---:|---:|
+| **Code Comprehension** | Read entire files<br>for relevant symbols | `get_symbols_overview` +<br>`find_symbol` (55-75%) | — | Compress + dedup<br>(5-10%) |
+| **Documentation Research** | Read full docs<br>or use stale training data | — | `context7_query-docs`<br>(65-85%) | Compress<br>(5-10%) |
+| **Code Editing** | Read full file,<br>rewrite via regex/sed | `replace_symbol_body` /<br>`insert_after_symbol` (40-55%) | — | Compress + dedup<br>(7-15%) |
+| **Search & Debugging** | grep/glob across codebase,<br>read to understand | `find_referencing_symbols` /<br>`find_implementations` (45-65%) | — | Compress + error pruning<br>(7-15%) |
+| **Diagnostics** | grep logs,<br>manual bisect | `get_diagnostics_for_file`<br>(55-75%) | — | Compress<br>(5-10%) |
+| **Library/Tool Setup** | Read setup guide,<br>guess config | — | `context7_query-docs`<br>(65-85%) | Compress<br>(5-10%) |
+| **Refactoring** | Find all usages<br>manually,<br>edit each file | `rename_symbol`<br>(75-85%) | — | Compress<br>(7-15%) |
 
 **Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest gains in early phases (comprehension, research) and refactoring.
 
