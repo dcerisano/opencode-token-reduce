@@ -26,6 +26,8 @@ Serena and Context7 reduce token consumption across every phase of the SDLC by r
 
 **Overall projection:** 50-70% fewer tokens consumed over the lifespan of a professional-grade project, with the largest gains in early phases (comprehension, research) and refactoring.
 
+DCP acts as a complementary layer — it proactively manages conversation context via compression nudges, deduplication, and error pruning, reducing token waste that accumulates across multi-turn sessions. Together, the three tools form a complete token-reduction pipeline: Serena for code, Context7 for docs, DCP for conversation state.
+
 ---
 
 ## Create a New Project from the Template
@@ -118,6 +120,10 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 [OpenCode](https://opencode.ai) handles model selection, MCP server orchestration, agent definitions with granular permission scopes, skill loading, and command templates. Session-level AI instructions are loaded from [`AGENTS.md`](./AGENTS.md).
 
+### DCP (Dynamic Context Pruning)
+
+[`@tarquinen/opencode-dcp`](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning) is an OpenCode plugin that provides proactive context management: compression nudge reminders at configurable context thresholds, message deduplication, error pruning, and turn protection. Configured in `.opencode/dcp.jsonc` with percentage-based limits that auto-scale per model.
+
 ### Serena
 
 [Serena](https://oraios.github.io/serena/) replaces native read/write/grep/glob with semantic operations — symbol search, targeted body replacement, diagnostics retrieval, and batch reads — reducing context per tool call.
@@ -132,19 +138,28 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 ```
 opencode-token-reduce/
-├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions
+├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions, DCP plugin
 ├── AGENTS.md                     # System prompt — AI startup instructions, Serena/Context7 preferences
 ├── .opencode/
 │   ├── .gitignore                # Ignores node_modules/, package*.json, bun.lock
 │   ├── package.json              # Node plugin dependency (@opencode-ai/plugin)
+│   ├── dcp.jsonc                 # DCP plugin config — compression thresholds, pruning rules
 │   ├── commands/
 │   │   └── migrate.md            # /migrate — merge template into existing project
 │   └── skills/
 │       └── memory-management/
 │           └── SKILL.md
 ├── .serena/
-│   ├── .gitignore                # Ignores /cache, /project.local.yml
+│   ├── .gitignore                # Ignores /cache
+│   ├── project.yml               # Serena project config — languages, encoding, tools
+│   ├── project.local.yml         # Local overrides for project.yml
 │   └── memories/
-│       └── .gitkeep              # Memory file storage
+│       ├── core.md               # Top-level project overview and key invariants
+│       ├── conventions.md        # Code/style conventions
+│       ├── dcp_config.md         # DCP configuration rationale
+│       ├── memory_maintenance.md # Memory graph model and maintenance rules
+│       ├── suggested_commands.md # Common commands
+│       ├── task_completion.md    # Verification steps after changes
+│       └── tech_stack.md         # Tooling and dependencies
 └── README.md
 ```
