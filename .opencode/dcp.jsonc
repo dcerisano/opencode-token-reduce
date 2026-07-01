@@ -15,7 +15,7 @@
         "nudgeFrequency": 8,
         "iterationNudgeThreshold": 15,
         "summaryBuffer": true,
-        "nudgeForce": "soft",
+        "nudgeForce": "strong",
         "protectedTools": ["serena_*", "context7_*"]
     },
     "strategies": {
