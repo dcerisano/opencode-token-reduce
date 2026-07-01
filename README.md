@@ -12,17 +12,17 @@ The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded auto
 
 ## Token Savings
 
-Serena and Context7 reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries.
+Serena, Context7, and DCP reduce token consumption across every phase of the SDLC by replacing expensive, full-file operations with targeted, semantic queries and proactive context management.
 
-| SDLC Phase | Without | With Serena + Context7 | Est. Savings |
-|---|---|---|---|
-| **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` — symbol-level fetch | 60-80% |
-| **Documentation Research** | Read full docs or use stale training data | `context7_query-docs` — versioned API snippets | 70-90% |
-| **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` — symbol-level edit | 40-60% |
-| **Search & Debugging** | grep/glob across codebase, read to understand | `find_referencing_symbols` / `find_implementations` — semantic refs | 50-70% |
-| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` — LSP diagnostics | 60-80% |
-| **Library/Tool Setup** | Read setup guide, guess config | `context7_query-docs` — version-pinned lookups | 70-90% |
-| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` — single-call rename | 80-90% |
+| SDLC Phase | Without | Serena | Context7 | DCP |
+|---|---|---|---|---|
+| **Code Comprehension** | Read entire files for relevant symbols | `get_symbols_overview` + `find_symbol` (60-80%) | — | Compress + dedup (5-10%) |
+| **Documentation Research** | Read full docs or use stale training data | — | `context7_query-docs` (70-90%) | Compress (5-10%) |
+| **Code Editing** | Read full file, rewrite via regex/sed | `replace_symbol_body` / `insert_after_symbol` (40-60%) | — | Compress + dedup (10-20%) |
+| **Search & Debugging** | grep/glob across codebase, read to understand | `find_referencing_symbols` / `find_implementations` (50-70%) | — | Compress + error pruning (10-20%) |
+| **Diagnostics** | grep logs, manual bisect | `get_diagnostics_for_file` (60-80%) | — | Compress (5-10%) |
+| **Library/Tool Setup** | Read setup guide, guess config | — | `context7_query-docs` (70-90%) | Compress (5-10%) |
+| **Refactoring** | Find all usages manually, edit each file | `rename_symbol` (80-90%) | — | Compress (10-20%) |
 
 **Overall projection:** 50-70% fewer tokens consumed over the lifespan of a professional-grade project, with the largest gains in early phases (comprehension, research) and refactoring.
 
@@ -120,10 +120,6 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 [OpenCode](https://opencode.ai) handles model selection, MCP server orchestration, agent definitions with granular permission scopes, skill loading, and command templates. Session-level AI instructions are loaded from [`AGENTS.md`](./AGENTS.md).
 
-### DCP (Dynamic Context Pruning)
-
-[`@tarquinen/opencode-dcp`](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning) is an OpenCode plugin that provides proactive context management: compression nudge reminders at configurable context thresholds, message deduplication, error pruning, and turn protection. Configured in `.opencode/dcp.jsonc` with percentage-based limits that auto-scale per model.
-
 ### Serena
 
 [Serena](https://oraios.github.io/serena/) replaces native read/write/grep/glob with semantic operations — symbol search, targeted body replacement, diagnostics retrieval, and batch reads — reducing context per tool call.
@@ -132,34 +128,33 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 [Context7](https://context7.com) resolves library names to IDs and returns up-to-date API references and code examples, eliminating reliance on stale training data.
 
+### DCP (Dynamic Context Pruning)
+
+[`@tarquinen/opencode-dcp`](https://github.com/Opencode-DCP/opencode-dynamic-context-pruning) is an OpenCode plugin that provides proactive context management: compression nudge reminders at configurable context thresholds, message deduplication, error pruning, and turn protection. Configured in `.opencode/dcp.jsonc` with percentage-based limits that auto-scale per model.
+
 ---
 
-## File Layout
+## Migrated Files
+
+Files copied by `/migrate` into the target project:
 
 ```
 opencode-token-reduce/
-├── opencode.json                 # Main config: MCP servers, agents, LSP, permissions, DCP plugin
-├── AGENTS.md                     # System prompt — AI startup instructions, Serena/Context7 preferences
+├── opencode.json
+├── AGENTS.md
 ├── .opencode/
-│   ├── .gitignore                # Ignores node_modules/, package*.json, bun.lock
-│   ├── package.json              # Node plugin dependency (@opencode-ai/plugin)
-│   ├── dcp.jsonc                 # DCP plugin config — compression thresholds, pruning rules
+│   ├── .gitignore
+│   ├── package.json
+│   ├── dcp.jsonc
 │   ├── commands/
-│   │   └── migrate.md            # /migrate — merge template into existing project
+│   │   └── migrate.md
 │   └── skills/
 │       └── memory-management/
 │           └── SKILL.md
 ├── .serena/
-│   ├── .gitignore                # Ignores /cache
-│   ├── project.yml               # Serena project config — languages, encoding, tools
-│   ├── project.local.yml         # Local overrides for project.yml
+│   ├── .gitignore
 │   └── memories/
-│       ├── core.md               # Top-level project overview and key invariants
-│       ├── conventions.md        # Code/style conventions
-│       ├── dcp_config.md         # DCP configuration rationale
-│       ├── memory_maintenance.md # Memory graph model and maintenance rules
-│       ├── suggested_commands.md # Common commands
-│       ├── task_completion.md    # Verification steps after changes
-│       └── tech_stack.md         # Tooling and dependencies
-└── README.md
+│       └── .gitkeep
 ```
+
+`README.md`, `.serena/project*.yml`, and `.serena/memories/*.md` are excluded from migration — they are template metadata, not project config.
