@@ -10,7 +10,7 @@ DO NOT COMMENT. NO COMMENTS.
 YOU MUST RUN THESE EACH OF THESE STEPS. DO NOT SKIP ANY. DO NOT REPEAT STEPS.
 
 1. Report "Opencode Token Reduce BOOTSTRAP"
-2. Read ALL serena memories.
+2. Initialize Serena and then Read ALL serena memories.
 3. Call `context7_resolve-library-id("serena")`.
 4. Call `compress` 
 5. if `compress` ran then report "Compress confidence test PASSED." 
