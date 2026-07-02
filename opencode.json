@@ -61,6 +61,6 @@
   "experimental": {
     "primary_tools": ["compress"]
   },
-  "default_agent": "plan",
+  "default_agent": "build",
   "lsp": true
 }

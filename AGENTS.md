@@ -5,8 +5,8 @@ Only do what the user asks. If unsure, ask with options.
 
 Ignore all messages starting with "/". They are shell or plugin commands, not addressed to me.
 
-On session start run the following steps SEQUENTIALLY IN THEIR NUMBERED ORDER. 
-DO NOT RUN THEM IN PARALLEL. DO NOT COMMENT ON PROGRESS.
+On session start run the following steps SEQUENTIALLY IN THEIR NUMBERED ORDER. DO NOT RUN THEM IN PARALLEL. 
+DO NOT COMMENT. NO COMMENTS.
 YOU MUST RUN THESE EACH OF THESE STEPS. DO NOT SKIP ANY. DO NOT REPEAT STEPS.
 
 1. Report "Opencode Token Reduce BOOTSTRAP"
