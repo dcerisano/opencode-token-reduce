@@ -41,8 +41,6 @@ opencode --prompt "startup"
 
 This creates a new repository with the template's full configuration (agents, MCP servers, skills, efficiency rules) and no business code. The project starts clean — ready for OpenCode.
 
-OpenCode bootstraps with Serena, Context7, and DCP  and uses Serena Memories to prime the session. 
-
 ---
 
 ## Migrate into an Existing Project
@@ -54,7 +52,10 @@ opencode --prompt "/migrate /path/to/your/project"
 ```
 
 The command copies the template's config into your project, **overwriting any existing files at those paths**. Review your existing config before running migration, especially if you have custom agents, commands, skills, or MCP server definitions.
+
 All configs are project-scoped — they live in your project root and have no effect outside it. Your global OpenCode configuration (`~/.config/opencode/`) is never touched.
+
+OpenCode bootstraps with Serena, Context7, and DCP  and uses Serena Memories to prime the session. 
 
 ---
 
