@@ -12,7 +12,7 @@
         "mode": "range",
         "maxContextLimit": "70%",
         "minContextLimit": "30%",
-        "nudgeFrequency": 8,
+        "nudgeFrequency": 3,
         "iterationNudgeThreshold": 15,
         "summaryBuffer": true,
         "nudgeForce": "strong",
@@ -21,12 +21,12 @@
     "strategies": {
         "deduplication": {
             "enabled": true,
-            "protectedTools": ["serena_*", "context7_*"]
+            "protectedTools": ["serena_*"]
         },
         "purgeErrors": {
             "enabled": true,
-            "turns": 10,
-            "protectedTools": ["serena_*", "context7_*"]
+            "turns": 4,
+            "protectedTools": []
         }
     },
     "turnProtection": {
