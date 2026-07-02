@@ -4,11 +4,11 @@
 
 Contributions, suggestions, and PRs are welcome!
 
-A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI token usage by pairing **Serena** (efficient code analysis and editing) with **Context7** (live documentation lookup) under strict efficiency rules.
+A drop-in [OpenCode](https://opencode.ai) configuration template that reduces AI token usage by pairing **Serena** (efficient code analysis and editing), **Context7** (live 
+documentation lookup) and **DCP** (dynamic context pruning).
 
 Use it as a GitHub template to bootstrap new projects with a pre-configured token-reducing environment. The template is model-agnostic — it works with any LLM backend that OpenCode supports.
 
-The template includes [`AGENTS.md`](./AGENTS.md) — a system prompt loaded automatically by OpenCode on every session. It instructs the AI to be concise, prefer Serena for code analysis, use Context7 for documentation, and run a startup routine (`context7_resolve-library-id`, read all Serena memories) each session.
 
 ## Token Reduction
 
@@ -24,11 +24,8 @@ Serena and Context7 reduce token consumption proactively — they prevent contex
 | **Library/Tool Setup** | Read setup guide manually | | `query-docs`<br>(65-85%) | Compress<br>(5-10%) |
 | **Refactoring** | Manual rename across files | `rename_symbol`<br>(75-85%) | | Compress<br>(7-15%) |
 
-**Overall projection:** 50-85% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest reductions in early phases (comprehension, research) and refactoring.
-
-For fixed model, hardware, batching, and sequence length, energy per token is approximately constant — fewer tokens directly means less electricity.
-
-DCP acts as a reactive complementary layer — it prunes conversation context via compression nudges, deduplication, and error pruning, cleaning up token waste that has already accumulated across multi-turn sessions. Together, the three tools form a complete token-reduction pipeline: Serena and Context7 prevent bloat a priori for code and docs, while DCP reactively cleans up conversation state.
+**Overall projection:** ~80% fewer tokens consumed (total combined net range across all phases, after tool overhead), with the largest reductions in early phases (comprehension, 
+research) and refactoring.
 
 ---
 
@@ -44,7 +41,7 @@ opencode --prompt "startup"
 
 This creates a new repository with the template's full configuration (agents, MCP servers, skills, efficiency rules) and no business code. The project starts clean — ready for OpenCode.
 
-OpenCode launches Serena and Context7, and prompts for the first task with token-reducing defaults in place.
+OpenCode bootstraps with Serena, Context7, and DCP  and uses Serena Memories to prime the session. 
 
 ---
 
@@ -56,8 +53,7 @@ To apply the token-reduce template to an existing project, use the `/migrate` co
 opencode --prompt "/migrate /path/to/your/project"
 ```
 
-The command copies the template's config files (`opencode.json`, `.opencode/`, `.serena/`) into your project, **overwriting any existing files at those paths**. Review your existing config before running migration, especially if you have custom agents, commands, skills, or MCP server definitions.
-
+The command copies the template's config into your project, **overwriting any existing files at those paths**. Review your existing config before running migration, especially if you have custom agents, commands, skills, or MCP server definitions.
 All configs are project-scoped — they live in your project root and have no effect outside it. Your global OpenCode configuration (`~/.config/opencode/`) is never touched.
 
 ---
