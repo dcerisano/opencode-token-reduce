@@ -5,7 +5,8 @@ description: Use on session start (only) to perform the Opencode Token Reduce bo
 
 Run these steps SEQUENTIALLY IN ORDER. DO NOT SKIP ANY. DO NOT REPEAT STEPS. DO NOT COMMENT ON STEPS. BOOTSTRAP OUTPUT MUST BE DETERMINISTIC WOTH NONE OF YOUR CHATTER.
 
-1. List serena memory names, then read `mem:core`.
+
+1. Call `serena_initial_instructions` then `serena_list_memories` then `serena_read_memory("mem:core")`.
 
 2. Launch a subagent (`subagent_type="general"`) that:
    2.1. Loads the `detect-languages` skill via `skill("detect-languages")` and
