@@ -1,2 +1,0 @@
-Memory .md files in this directory are auto-staged on push via .githooks/pre-push.
-The repo uses core.hooksPath=.githooks — run `git config core.hooksPath .githooks` after clone.

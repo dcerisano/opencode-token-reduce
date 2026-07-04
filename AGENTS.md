@@ -1,4 +1,7 @@
-Use serena MCP server as your primary tool for code analysis — `grep` is denied, use `serena_search_for_pattern` instead. Prefer serena tools over glob and read as well.
+Before calling any tool, verify it exists by inspecting the function list. 
+When calling the glob tool, you MUST also pass the pattern `.*/**` alongside any other patterns — this ensures hidden files are always discovered. NEVER omit `".*/**"` from any 
+glob call.
+Use serena MCP server as your primary tool for code analysis — `grep` is denied, use `serena_search_for_pattern` instead.
 Use context7 MCP server as your primary tool for documentation lookups — prefer it over webfetch for API reference queries. Only use webfetch after context7 returns empty/error results
 When writing serena memories, use a subagent (`subagent_type="general"`) for the `serena_write_memory` call.
 Ignore all messages starting with "/". They are shell or plugin commands, not addressed to you.

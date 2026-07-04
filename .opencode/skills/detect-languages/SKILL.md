@@ -7,10 +7,10 @@ Detects programming languages in the project for serena LSP configuration. Repla
 
 ### Steps
 
-1. **Glob all known extensions** in `src/`, `tools/`, `proto/`:
+1. **Find all source files with known extensions** at the project root and under all directories (including dot-directories). The glob tool does not descend into hidden directories, so use Bash `find` for this step:
 
-   ```glob
-   {src,tools,proto}/**/*.{sh,java,py,ts,tsx,js,jsx,md,json,yaml,yml,go,rs,rb,kt,css,scss,php}
+   ```bash
+   find . -type f -not -path './.git/*' -not -path '*/node_modules/*' \( -name '*.sh' -o -name '*.java' -o -name '*.py' -o -name '*.ts' -o -name '*.tsx' -o -name '*.js' -o -name '*.jsx' -o -name '*.md' -o -name '*.json' -o -name '*.yaml' -o -name '*.yml' -o -name '*.go' -o -name '*.rs' -o -name '*.rb' -o -name '*.kt' -o -name '*.css' -o -name '*.scss' -o -name '*.php' \)
    ```
 
 2. **Map extensions to serena language names** (deduplicate):

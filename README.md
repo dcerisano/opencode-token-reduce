@@ -149,17 +149,19 @@ opencode-token-reduce/
 ├── AGENTS.md
 ├── .opencode/
 │   ├── .gitignore
-│   ├── package.json
 │   ├── dcp.jsonc
 │   ├── commands/
 │   │   └── migrate.md
 │   └── skills/
+│       ├── bootstrap/
+│       │   └── SKILL.md
+│       ├── detect-languages/
+│       │   └── SKILL.md
 │       └── memory-management/
 │           └── SKILL.md
 ├── .serena/
-│   ├── .gitignore
-│   └── memories/
-│       └── .gitkeep
+│   ├── .detected-languages.sig
+│   └── .gitignore
 ```
 
-`README.md`, `.serena/project*.yml`, and `.serena/memories/*.md` are excluded from migration — they are template metadata, not project config.
+`README.md`, `.serena/project*.yml`, and all files under `.serena/memories/` are excluded from migration — they are template metadata, not project config.

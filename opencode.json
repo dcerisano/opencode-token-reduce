@@ -55,7 +55,8 @@
     "edit": "ask",
     "grep": "deny",
     "bash": {
-      "git push": "ask"
+      "git push": "ask",
+      "find"    : "deny"
     }
   },
   "experimental": {

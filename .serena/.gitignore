@@ -1,2 +1,5 @@
 /cache
 /project.local.yml
+project.local.yml
+project.yml
+.detected-languages.sig
