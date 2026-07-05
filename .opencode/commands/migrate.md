@@ -16,7 +16,6 @@ cp --parents \
   AGENTS.md \
   .opencode/.gitignore \
   .opencode/dcp.jsonc \
-  .opencode/commands/migrate.md \
   .opencode/skills/bootstrap/SKILL.md \
   .opencode/skills/memory-management/SKILL.md \
   .serena/.gitignore \
