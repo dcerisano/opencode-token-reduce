@@ -9,10 +9,19 @@ Otherwise, ask the user for the target path using the `question` tool. Keep aski
 Once confirmed run this bash command as a subagent task:
 
 ```bash
-cd /home/praxis/git/opencode-token-reduce && \
-  git ls-files | \
-  grep -v -E '^(README\.md|\.serena/memories/.*|\.serena/project.*\.yml)' | \
-  xargs -I{} cp --parents {} "$confirmed_path"
+src_root="$(git rev-parse --show-toplevel)" && \
+cd "$src_root" && \
+cp --parents \
+  opencode.json \
+  AGENTS.md \
+  .opencode/.gitignore \
+  .opencode/dcp.jsonc \
+  .opencode/commands/migrate.md \
+  .opencode/skills/bootstrap/SKILL.md \
+  .opencode/skills/memory-management/SKILL.md \
+  .serena/.gitignore \
+  .serena/memories/.gitkeep \
+  "$confirmed_path"
 ```
 
 Report: "Migrated N files to <path>."

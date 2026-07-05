@@ -166,7 +166,9 @@ opencode-token-reduce/
 │       └── memory-management/
 │           └── SKILL.md
 ├── .serena/
-│   └── .gitignore
+│   ├── .gitignore
+│   └── memories/
+│       └── .gitkeep
 ```
 
-`README.md`, `.serena/project*.yml`, and all files under `.serena/memories/` are excluded from migration — they are template metadata, not project config.
+`README.md`, `.serena/project*.yml`, and all files under `.serena/memories/` (except `.gitkeep`) are excluded from migration — they are template metadata, not project config.
