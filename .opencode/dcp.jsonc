@@ -31,7 +31,7 @@
     },
     "turnProtection": {
         "enabled": true,
-        "turns": 4
+        "turns": 2
     },
     "experimental": {
         "allowSubAgents": true

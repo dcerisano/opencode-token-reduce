@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": [],
+  "instructions": [""],
   "compaction": {
     "auto": false
   },
@@ -54,9 +54,9 @@
   "permission": {
     "edit": "ask",
     "grep": "deny",
+    "glob": "allow",
     "bash": {
-      "git push": "ask",
-      "find"    : "deny"
+      "git push": "ask"
     }
   },
   "experimental": {

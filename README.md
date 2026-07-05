@@ -119,6 +119,14 @@ The Serena and Context7 MCP servers are configured in the root `opencode.json` a
 
 ---
 
+## Version Compatibility
+
+WARNING: opencode **1.17.13** is outdated — the `glob` tool does find hidden files.
+Install the beta to fix: `npm i -g opencode-ai@beta`
+CAUTION: Sessions created with stable may not open in beta. Revert: `npm i -g opencode-ai@latest`
+
+---
+
 ## Tech Stack
 
 ### OpenCode
@@ -155,12 +163,9 @@ opencode-token-reduce/
 │   └── skills/
 │       ├── bootstrap/
 │       │   └── SKILL.md
-│       ├── detect-languages/
-│       │   └── SKILL.md
 │       └── memory-management/
 │           └── SKILL.md
 ├── .serena/
-│   ├── .detected-languages.sig
 │   └── .gitignore
 ```
 

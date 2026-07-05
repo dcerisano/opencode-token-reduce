@@ -6,7 +6,7 @@ A drop-in OpenCode configuration template that reduces AI token usage by pairing
 
 - `opencode.json` — main OpenCode config: MCP servers (serena, context7), agents, permissions, DCP plugin
 - `AGENTS.md` — session instructions: prefer serena over grep/glob, context7 over webfetch, bootstrap on start
-- `.opencode/skills/` — bootstrap, detect-languages, memory-management
+- `.opencode/skills/` — bootstrap, memory-management
 - `.opencode/commands/` — migrate command
 - `.opencode/dcp.jsonc` — DCP plugin configuration
 - `.serena/` — serena project config (languages: none), memories, cache
