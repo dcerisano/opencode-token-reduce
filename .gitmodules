@@ -1,0 +1,3 @@
+[submodule "llm-server"]
+	path = llm-server
+	url = https://github.com/dcerisano/llm-server.git
