@@ -1,3 +1,6 @@
 [submodule "llm-server"]
 	path = llm-server
 	url = https://github.com/dcerisano/llm-server.git
+[submodule "opencode-rgbify-plugin"]
+	path = opencode-rgbify-plugin
+	url = https://github.com/dcerisano/opencode-rgbify-plugin.git
